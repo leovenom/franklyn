@@ -5,8 +5,16 @@ import { breadcrumbJsonLd } from "@/lib/metadata";
 
 type Crumb = { label: string; href: string };
 
-export function Breadcrumbs({ items, market = "br" }: { items: Crumb[]; market?: Market }) {
-  const home = getCopy(market).homePath;
+export function Breadcrumbs({
+  items,
+  market = "br",
+  homeHref,
+}: {
+  items: Crumb[];
+  market?: Market;
+  homeHref?: string;
+}) {
+  const home = homeHref ?? getCopy(market).homePath;
   const schemaItems = [{ name: "Home", path: home }, ...items.map((i) => ({ name: i.label, path: i.href }))];
 
   return (

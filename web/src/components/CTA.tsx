@@ -31,30 +31,35 @@ export function CTA({ copy, market = "br" }: { copy: HomeCopy["cta"]; market?: M
         whileInView="visible"
         viewport={{ once: true }}
         variants={fadeUp}
-        className="mx-auto max-w-3xl rounded-2xl bg-franklyn-dark px-8 py-16 text-center text-white"
+        className="relative mx-auto max-w-3xl overflow-hidden rounded-2xl bg-franklyn-navy px-8 py-16 text-center text-white shadow-2xl shadow-franklyn-navy/25"
       >
-        <h2 className="text-3xl font-semibold">{copy.title}</h2>
-        <p className="mx-auto mt-4 max-w-md text-neutral-400">{copy.sub}</p>
-        <form onSubmit={handleSubmit} className="mx-auto mt-8 flex max-w-md flex-col gap-3 sm:flex-row">
-          <input
-            type="email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder={copy.placeholder}
-            aria-label={copy.placeholder}
-            className="flex-1 rounded-md border border-neutral-700 bg-neutral-900 px-4 py-3 text-sm text-white placeholder:text-neutral-500 focus:border-franklyn-accent focus:outline-none"
-          />
-          <m.button
-            type="submit"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="rounded-md bg-franklyn-accent px-6 py-3 text-sm font-semibold text-white"
-          >
-            {copy.button}
-          </m.button>
-        </form>
-        <p className="mt-4 text-xs text-neutral-500">{copy.fine}</p>
+        <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-franklyn-gold/10 blur-3xl" aria-hidden />
+        <div className="pointer-events-none absolute -bottom-16 -left-16 h-48 w-48 rounded-full bg-franklyn-accent/15 blur-3xl" aria-hidden />
+        <div className="relative">
+          <p className="text-xs font-semibold uppercase tracking-widest text-franklyn-gold/90">Sem compromisso</p>
+          <h2 className="mt-3 font-serif text-3xl font-normal md:text-4xl">{copy.title}</h2>
+          <p className="mx-auto mt-4 max-w-md text-neutral-400">{copy.sub}</p>
+          <form onSubmit={handleSubmit} className="mx-auto mt-8 flex max-w-md flex-col gap-3 sm:flex-row">
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder={copy.placeholder}
+              aria-label={copy.placeholder}
+              className="flex-1 rounded-lg border border-white/10 bg-white/5 px-4 py-3.5 text-sm text-white placeholder:text-neutral-500 backdrop-blur-sm focus:border-franklyn-gold focus:outline-none focus:ring-2 focus:ring-franklyn-gold/30"
+            />
+            <m.button
+              type="submit"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="rounded-lg bg-franklyn-accent px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-franklyn-accent/30 hover:bg-franklyn-accent-dark"
+            >
+              {copy.button}
+            </m.button>
+          </form>
+          <p className="mt-4 text-xs text-neutral-500">{copy.fine}</p>
+        </div>
       </m.div>
     </section>
   );

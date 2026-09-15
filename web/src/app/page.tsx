@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { Footer } from "@/components/Footer";
 import { MarketSelector } from "@/components/MarketSelector";
+import { Nav } from "@/components/Nav";
 import { buildMetadata } from "@/lib/metadata";
 import { SITE_NAME } from "@/lib/site";
 
@@ -12,8 +14,12 @@ export const metadata: Metadata = buildMetadata({
 
 export default function RootPage() {
   return (
-    <main id="main-content">
-      <MarketSelector />
-    </main>
+    <>
+      <Nav market="global" />
+      <main id="main-content">
+        <MarketSelector />
+      </main>
+      <Footer market="global" />
+    </>
   );
 }

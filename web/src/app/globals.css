@@ -5,6 +5,9 @@
 @layer base {
   html { scroll-behavior: smooth; }
   body { @apply bg-franklyn-bg text-franklyn-ink antialiased; }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-franklyn-accent;
+  }
 }
 
 @layer utilities {

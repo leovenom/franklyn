@@ -18,10 +18,15 @@ export function Steps({ copy }: { copy: HomeCopy["steps"] }) {
           className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4"
         >
           {copy.items.map((step, i) => (
-            <m.div key={step.num} variants={fadeUp} custom={i}>
-              <p className="font-serif text-4xl text-franklyn-border">{step.num}</p>
+            <m.div
+              key={step.num}
+              variants={fadeUp}
+              custom={i}
+              className="rounded-2xl border border-transparent p-4 transition hover:border-franklyn-border hover:bg-white hover:shadow-sm"
+            >
+              <p className="font-serif text-4xl text-franklyn-accent/30">{step.num}</p>
               <h3 className="mt-3 font-semibold">{step.title}</h3>
-              <p className="mt-2 text-sm text-franklyn-muted">{step.desc}</p>
+              <p className="mt-2 text-sm leading-relaxed text-franklyn-muted">{step.desc}</p>
             </m.div>
           ))}
         </m.div>

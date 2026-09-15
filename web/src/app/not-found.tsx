@@ -14,23 +14,30 @@ export const metadata: Metadata = buildMetadata({
 export default function NotFound() {
   return (
     <>
-      <Nav />
-      <main id="main-content" className="mx-auto flex min-h-[60vh] max-w-lg flex-col items-center justify-center px-6 py-24 text-center">
+      <Nav market="global" />
+      <main
+        id="main-content"
+        className="mx-auto flex min-h-[60vh] max-w-lg flex-col items-center justify-center px-6 py-24 text-center"
+      >
         <p className="text-sm font-semibold uppercase tracking-widest text-franklyn-accent">Erro 404</p>
-        <h1 className="mt-4 text-4xl font-semibold tracking-tight">Página não encontrada</h1>
-        <p className="mt-4 text-franklyn-muted">
-          O endereço pode estar incorreto ou a página foi movida.
-        </p>
+        <h1 className="mt-4 font-serif text-4xl font-normal tracking-tight">Página não encontrada</h1>
+        <p className="mt-4 text-franklyn-muted">O endereço pode estar incorreto ou a página foi movida.</p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <Link href="/" className="rounded-md bg-franklyn-accent px-5 py-2.5 text-sm font-semibold text-white hover:bg-franklyn-accent-dark">
-            Ir para o início
+          <Link
+            href="/"
+            className="rounded-lg bg-franklyn-accent px-5 py-2.5 text-sm font-semibold text-white hover:bg-franklyn-accent-dark"
+          >
+            Escolher mercado
           </Link>
-          <Link href="/br/contact" className="rounded-md border border-franklyn-border px-5 py-2.5 text-sm font-semibold hover:border-franklyn-ink">
+          <Link
+            href="/br/contact"
+            className="rounded-lg border border-franklyn-border px-5 py-2.5 text-sm font-semibold hover:border-franklyn-ink"
+          >
             Fale conosco
           </Link>
         </div>
       </main>
-      <Footer />
+      <Footer market="global" />
     </>
   );
 }

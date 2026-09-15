@@ -9,20 +9,19 @@ const toneClass = {
   danger: "text-red-700 bg-red-50",
 };
 
-export function CasesList({ market }: { market: Market }) {
+export function CasesList({ market, hideHeader = false }: { market: Market; hideHeader?: boolean }) {
   const home = market === "br" ? "/br" : "/pt";
-  const intro =
-    market === "br"
-      ? "Negócios fictícios que demonstram diagnóstico honesto — incluindo scores baixos."
-      : "Negócios fictícios com diagnóstico transparente — incluindo scores baixos. Valores em €.";
 
   return (
     <>
-      <p className="text-xs font-semibold uppercase tracking-widest text-franklyn-accent">Portfolio</p>
-      <h1 className="mt-3 text-4xl font-semibold tracking-tight">Cases de franqueabilidade</h1>
-      <p className="mt-4 max-w-2xl text-franklyn-muted">{intro}</p>
+      {!hideHeader && (
+        <>
+          <p className="text-xs font-semibold uppercase tracking-widest text-franklyn-accent">Portfolio</p>
+          <h1 className="mt-3 font-serif text-4xl font-normal tracking-tight">Cases de franqueabilidade</h1>
+        </>
+      )}
 
-      <ul className="mt-12 space-y-4">
+      <ul className={`space-y-4 ${hideHeader ? "" : "mt-12"}`}>
         {portfolioCases.map((c) => {
           const verdict = market === "pt" && c.verdictPT ? c.verdictPT : c.verdict;
           const pkg = market === "pt" ? c.packagePT : c.package;
@@ -31,7 +30,7 @@ export function CasesList({ market }: { market: Market }) {
           return (
             <li
               key={c.slug}
-              className={`rounded-xl border p-6 ${c.highlight ? "border-franklyn-accent bg-white" : "border-franklyn-border bg-white"}`}
+              className={`rounded-2xl border p-6 transition hover:shadow-md ${c.highlight ? "border-franklyn-accent/50 bg-white shadow-sm ring-1 ring-franklyn-accent/10" : "border-franklyn-border bg-white hover:border-franklyn-accent/20"}`}
             >
               <div className="flex flex-wrap items-start justify-between gap-4">
                 <div>
