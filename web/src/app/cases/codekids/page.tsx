@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
+import { BrandKitShowcase } from "@/components/BrandKitShowcase";
+import { codekidsBrandKit } from "@/lib/brand-kits/codekids";
 import { CODEKIDS, codekidsDeliverables, codekidsStats } from "@/lib/codekids";
 import { buildMetadata } from "@/lib/metadata";
 
@@ -57,6 +59,8 @@ export default function CodeKidsCasePage() {
             ))}
           </dl>
         </section>
+
+        <BrandKitShowcase kit={codekidsBrandKit} />
 
         <section className="mt-12">
           <h2 className="text-xl font-semibold">Entregáveis Franklyn</h2>

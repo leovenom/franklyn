@@ -19,6 +19,12 @@
     white-space: nowrap;
     border-width: 0;
   }
+
+  .hero-pattern {
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(10, 25, 47, 0.04) 1px, transparent 0);
+    background-size: 24px 24px;
+  }
 }
 
 @media print {

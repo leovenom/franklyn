@@ -14,7 +14,13 @@ const config: Config = {
           "accent-dark": "#9a4520",
           border: "#e8e4df",
           dark: "#0f1419",
+          navy: "#0a192f",
+          gold: "#d4a853",
         },
+      },
+      backgroundImage: {
+        "hero-mesh":
+          "radial-gradient(ellipse 80% 60% at 20% 40%, rgba(196,90,42,0.08), transparent), radial-gradient(ellipse 60% 50% at 80% 20%, rgba(10,25,47,0.06), transparent)",
       },
       fontFamily: {
         sans: ["var(--font-dm-sans)", "system-ui", "sans-serif"],

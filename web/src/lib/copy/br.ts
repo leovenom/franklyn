@@ -13,6 +13,7 @@ export const copyBR: MarketCopy = {
   plansEU: [],
   navLinks: [
     { href: "/#como", label: "Como funciona" },
+    { href: "/#marca", label: "Marca" },
     { href: "/#pacotes", label: "Pacotes" },
     { href: "/cases", label: "Cases" },
     { href: "/about", label: "Sobre" },

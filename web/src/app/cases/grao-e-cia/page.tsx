@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
+import { BrandKitShowcase } from "@/components/BrandKitShowcase";
+import { graoBrandKit } from "@/lib/brand-kits/grao-ecia";
 import { GRAO_E_CIA, graoDeliverables, graoFormatos, graoStats } from "@/lib/grao-ecia";
 import { buildMetadata } from "@/lib/metadata";
 
@@ -57,6 +59,8 @@ export default function GraoCasePage() {
             ))}
           </dl>
         </section>
+
+        <BrandKitShowcase kit={graoBrandKit} />
 
         <section className="mt-12">
           <h2 className="text-xl font-semibold">Dois formatos de loja</h2>

@@ -12,6 +12,9 @@ export function GraoNav() {
           {GRAO_E_CIA.name}
         </Link>
         <div className="flex items-center gap-4">
+          <Link href="#marca" className="hidden text-sm text-amber-900/70 hover:text-amber-950 sm:inline">
+            Marca
+          </Link>
           <Link href="#formatos" className="hidden text-sm text-amber-900/70 hover:text-amber-950 sm:inline">
             Formatos
           </Link>

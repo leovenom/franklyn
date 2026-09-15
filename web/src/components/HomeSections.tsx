@@ -7,6 +7,7 @@ import { JsonLd } from "./JsonLd";
 import { faqJsonLd } from "@/lib/metadata";
 import { Hero } from "./Hero";
 import { TrustBar } from "./TrustBar";
+import { SocialProof } from "./SocialProof";
 import { Steps } from "./Steps";
 import { Honesty } from "./Honesty";
 import { Agents } from "./Agents";
@@ -24,6 +25,7 @@ export function HomeSections({ market = "br" }: { market?: Market }) {
     <LazyMotion features={domAnimation} strict>
       <JsonLd data={faqJsonLd(home.faq.items)} />
       <Hero copy={home.hero} homePath={homePath} />
+      <SocialProof market={market} />
       <TrustBar items={home.trust} />
       <Steps copy={home.steps} />
       <Honesty copy={home.honesty} casesPath={marketHref(market, "/cases")} />

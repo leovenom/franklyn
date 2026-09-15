@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BrandKitLandingSection } from "@/components/BrandKitLandingSection";
 import { GraoFooter } from "@/components/grao/GraoFooter";
 import { GraoNav } from "@/components/grao/GraoNav";
+import { graoBrandKit } from "@/lib/brand-kits/grao-ecia";
 import { GRAO_E_CIA, graoFormatos } from "@/lib/grao-ecia";
 import { buildMetadata } from "@/lib/metadata";
 
@@ -88,6 +90,14 @@ export default function GraoFranquiaPage() {
             </div>
           </div>
         </section>
+
+        <BrandKitLandingSection
+          kit={graoBrandKit}
+          casePath="/cases/grao-e-cia"
+          accentClass="text-amber-800"
+          mutedClass="text-amber-900/70"
+          borderClass="border-amber-200"
+        />
 
         <section className="bg-amber-900 px-6 py-20 text-amber-50">
           <div className="mx-auto max-w-5xl">

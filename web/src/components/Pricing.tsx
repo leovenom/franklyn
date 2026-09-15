@@ -22,7 +22,7 @@ function PlanCard({
     <m.div
       variants={fadeUp}
       custom={index}
-      className={`relative flex flex-col rounded-xl border p-7 ${plan.featured ? "border-franklyn-accent shadow-lg shadow-franklyn-accent/10" : "border-franklyn-border"} bg-white`}
+      className={`relative flex flex-col rounded-2xl border p-7 transition ${plan.featured ? "z-10 scale-[1.02] border-franklyn-accent shadow-xl shadow-franklyn-accent/15 lg:-my-2 lg:py-9" : "border-franklyn-border hover:border-franklyn-accent/40"} bg-white`}
     >
       {plan.tag && (
         <span className="absolute -top-2.5 left-5 rounded bg-franklyn-accent px-2.5 py-0.5 text-[10px] font-bold uppercase text-white">

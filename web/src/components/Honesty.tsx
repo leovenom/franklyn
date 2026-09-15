@@ -15,7 +15,7 @@ export function Honesty({ copy, casesPath = "/cases" }: { copy: HomeCopy["honest
         <m.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="grid gap-10 lg:grid-cols-2 lg:items-center">
           <div>
             <p className="text-xs font-semibold uppercase tracking-widest text-franklyn-accent">{copy.label}</p>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight">{copy.title}</h2>
+            <h2 className="mt-3 font-serif text-3xl font-normal tracking-tight md:text-4xl">{copy.title}</h2>
             <p className="mt-4 text-franklyn-muted">{copy.desc}</p>
             <Link href={casesPath} className="mt-6 inline-block text-sm font-semibold text-franklyn-accent hover:underline">
               {copy.cta}

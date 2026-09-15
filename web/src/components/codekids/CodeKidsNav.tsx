@@ -12,6 +12,9 @@ export function CodeKidsNav() {
           {CODEKIDS.name}
         </Link>
         <div className="flex items-center gap-4">
+          <Link href="#marca" className="hidden text-sm text-slate-600 hover:text-indigo-700 sm:inline">
+            Marca
+          </Link>
           <Link href="#trilhas" className="hidden text-sm text-slate-600 hover:text-indigo-700 sm:inline">
             Trilhas
           </Link>

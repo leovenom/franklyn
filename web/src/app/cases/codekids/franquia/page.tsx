@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BrandKitLandingSection } from "@/components/BrandKitLandingSection";
 import { CodeKidsFooter } from "@/components/codekids/CodeKidsFooter";
 import { CodeKidsNav } from "@/components/codekids/CodeKidsNav";
+import { codekidsBrandKit } from "@/lib/brand-kits/codekids";
 import { CODEKIDS, codekidsTrilhas } from "@/lib/codekids";
 import { buildMetadata } from "@/lib/metadata";
 
@@ -150,6 +152,14 @@ export default function CodeKidsFranquiaPage() {
             </p>
           </div>
         </section>
+
+        <BrandKitLandingSection
+          kit={codekidsBrandKit}
+          casePath="/cases/codekids"
+          accentClass="text-indigo-600"
+          mutedClass="text-slate-600"
+          borderClass="border-indigo-100"
+        />
 
         {/* Suporte */}
         <section className="border-t border-indigo-100 bg-slate-50 px-6 py-20">
