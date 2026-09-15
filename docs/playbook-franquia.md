@@ -1,4 +1,4 @@
-# Playbook de Franqueamento Franclean
+# Playbook de Franqueamento — Franklyn
 
 ## Fase 1 — Diagnóstico (1–2 semanas)
 
@@ -16,6 +16,8 @@ Checklist de franqueabilidade (score 0–10 cada):
 
 **Score ≥ 49/70**: Prosseguir. **35–48**: Ajustar antes. **< 35**: Não franquear ainda.
 
+→ Detalhe legal: [leis-franquia-br-pt.md](./leis-franquia-br-pt.md)
+
 ## Fase 2 — Estruturação (3–6 semanas)
 
 Entregáveis:
@@ -25,8 +27,13 @@ Entregáveis:
 3. Manual do franqueado
 4. Plano de treinamento (presencial + EAD)
 5. Kit de abertura (checklist 90 dias)
-6. COF + contrato de franquia (jurídico)
-7. Identidade visual e materiais de captação
+6. COF (BR) ou dossier APF (PT) + contrato
+7. Identidade visual e materiais de captação — processo em 5 etapas:
+   - **Mood capture** — brief sensorial + moodboard
+   - **Sensory translation** — paleta, textura, ritmo espacial
+   - **Concept sketching** — 2–3 direções visuais em rascunho
+   - **Refinement** — brand kit + manual de identidade
+   - **Feedback** — rodadas com fundador e piloto antes de congelar
 
 ## Fase 3 — Lançamento (4–8 semanas)
 
@@ -37,10 +44,12 @@ Entregáveis:
 
 ## Fase 4 — Escala
 
+→ Modelo completo: [modelo-escala.md](./modelo-escala.md)
+
 1. Expansão territorial (mapa de exclusividade)
 2. Master franchise (regiões grandes)
 3. Otimização de royalties e mix de receita
-4. Internacionalização (quando aplicável)
+4. Internacionalização BR ↔ PT
 
 ## Métricas de sucesso da rede
 

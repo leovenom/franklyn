@@ -1,46 +1,32 @@
-# Franclean
+# Franklyn
 
 **Franqueie e escale qualquer negócio — com inteligência.**
 
-A Franclean é uma empresa de consultoria e tecnologia que transforma negócios replicáveis em modelos de franquia escaláveis. Cada setor da operação é apoiado por um agente especializado no Cursor.
+Consultoria de franquias · Brasil (principal) · Europa PT/ES · Valores R$ e €
 
-## Missão
+## Portfolio de cases
 
-Democratizar o acesso a franquias de qualidade, ajudando empreendedores a estruturar, documentar, franquear e escalar seus negócios com método e velocidade.
+5 cases fictícios completos em [`clients/cases/`](clients/cases/README.md):
 
-## Como funciona
+| Case | Score | Veredicto |
+|------|-------|-----------|
+| [**CodeKids** ★](clients/cases/codekids/) | 55/70 | Franquear · Growth |
+| [**Grão & Cia** ★](clients/cases/grao-e-cia/) | 52/70 | Franquear · Starter→Growth |
+| EcoShine | 48/70 | Ajustar |
+| DermaPure | 44/70 | Ajustar |
+| [Pulse Box](clients/cases/pulse-box/) | 38/70 | Não franquear · licenciamento |
 
-1. **Diagnóstico** — Avaliamos se o negócio é franqueável (unit economics, replicabilidade, marca).
-2. **Estruturação** — Manual de operações, contratos, precificação, treinamento.
-3. **Lançamento** — Primeiros franqueados, marketing de captação, suporte.
-4. **Escala** — Expansão territorial, otimização de royalties, novos mercados.
+## Site · Go-live
 
-## Agentes por setor
-
-| Agente | Skill | Foco |
-|--------|-------|------|
-| CEO | `franclean-ceo` | Estratégia, priorização, visão |
-| Franquia | `franclean-franquia` | Modelo, COF, manual, royalties |
-| Operações | `franclean-operacoes` | Processos, SOPs, qualidade |
-| Marketing | `franclean-marketing` | Marca, captação, campanhas |
-| Jurídico | `franclean-juridico` | Contratos, compliance, COF |
-| Financeiro | `franclean-financeiro` | Unit economics, projeções, royalties |
-| Comercial | `franclean-comercial` | Venda de franquias, pipeline |
-| RH | `franclean-rh` | Treinamento, cultura, onboarding |
-| Expansão | `franclean-expansao` | Territórios, master franchise, internacional |
-
-Veja [AGENTS.md](./AGENTS.md) para o playbook completo de orquestração.
-
-## Estrutura do repositório
-
-```
-franclean/
-├── AGENTS.md           # Playbook de orquestração (CEO → setores)
-├── docs/               # Documentação da empresa e metodologia
-├── clients/            # Um diretório por cliente/negócio em franqueamento
-└── .cursor/skills/     # Skills dos agentes por setor
+```bash
+cd web && ./scripts/go-live.sh    # build
+npx vercel --prod                 # deploy
 ```
 
-## CEO
+Checklist completo: [GO-LIVE.md](GO-LIVE.md) · [web/DEPLOY.md](web/DEPLOY.md)
 
-Leonardt — fundador e CEO da Franclean.
+## Docs
+
+- [Leis de franquia BR + PT](docs/leis-franquia-br-pt.md) · [Modelo de escala](docs/modelo-escala.md)
+- [Playbook](docs/playbook-franquia.md) · [AGENTS.md](AGENTS.md)
+- Site: `/guia/leis-franquia` · `/guia/modelo-escala`
