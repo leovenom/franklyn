@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getCopy, type Market } from "./copy";
+import { getCopy } from "./copy";
 import { COMPANY, SITE_NAME, SITE_URL } from "./site";
 
 type PageMeta = {
@@ -8,8 +8,6 @@ type PageMeta = {
   path: string;
   noIndex?: boolean;
   keywords?: string[];
-  market?: Market;
-  alternatePath?: string;
 };
 
 export function buildMetadata({
@@ -18,35 +16,19 @@ export function buildMetadata({
   path,
   noIndex,
   keywords = [],
-  market = "br",
-  alternatePath,
 }: PageMeta): Metadata {
-  const url = `${SITE_URL}${path}`;
-  const ogTitle = path === "/br" || path === "/pt" ? `${SITE_NAME} — ${title}` : `${title} | ${SITE_NAME}`;
-  const copy = getCopy(market);
-
-  const languages: Record<string, string> = {};
-  if (path === "/br" || path === "/pt") {
-    languages["pt-BR"] = `${SITE_URL}/br`;
-    languages["pt-PT"] = `${SITE_URL}/pt`;
-    languages["x-default"] = `${SITE_URL}/br`;
-  } else if (alternatePath) {
-    languages["pt-BR"] = market === "br" ? url : `${SITE_URL}${alternatePath}`;
-    languages["pt-PT"] = market === "pt" ? url : `${SITE_URL}${alternatePath}`;
-  }
+  const url = `${SITE_URL}${path === "/" ? "" : path}`;
+  const ogTitle = path === "/" ? `${SITE_NAME} | ${title}` : `${title} | ${SITE_NAME}`;
+  const copy = getCopy();
 
   return {
-    title: path === "/br" || path === "/pt" ? { absolute: ogTitle } : title,
+    title: path === "/" ? { absolute: ogTitle } : title,
     description,
     keywords: keywords.length > 0 ? keywords : copy.home.meta.keywords,
-    alternates: {
-      canonical: url,
-      ...(Object.keys(languages).length > 0 ? { languages } : {}),
-    },
+    alternates: { canonical: url },
     openGraph: {
       type: "website",
       locale: copy.ogLocale,
-      alternateLocale: market === "br" ? "pt_PT" : "pt_BR",
       url,
       siteName: SITE_NAME,
       title: ogTitle,
@@ -63,6 +45,23 @@ export function buildMetadata({
   };
 }
 
+export function websiteJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE_NAME,
+    url: SITE_URL,
+    description: COMPANY.description,
+    inLanguage: "pt-PT",
+    publisher: {
+      "@type": "Organization",
+      name: COMPANY.legalName,
+      url: SITE_URL,
+      logo: `${SITE_URL}/logo.svg`,
+    },
+  };
+}
+
 export function localBusinessJsonLd() {
   return {
     "@context": "https://schema.org",
@@ -70,25 +69,21 @@ export function localBusinessJsonLd() {
     name: COMPANY.name,
     description: COMPANY.description,
     url: SITE_URL,
-    email: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "contato@franklyn.com.br",
+    email: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "contato@franklyn.pt",
     telephone: COMPANY.phone,
     image: `${SITE_URL}/opengraph-image`,
     address: {
       "@type": "PostalAddress",
       ...COMPANY.address,
     },
-    areaServed: [
-      { "@type": "Country", name: "Brazil" },
-      { "@type": "Country", name: "Portugal" },
-    ],
-    priceRange: "$$",
+    areaServed: { "@type": "Country", name: "Portugal" },
+    priceRange: "€€",
     sameAs: COMPANY.sameAs,
     knowsAbout: [
-      "Franchising",
-      "Franquias",
-      "Consultoria de expansão",
-      "COF",
-      "Circular de Oferta de Franquia",
+      "Consultoria de franchising",
+      "Franqueabilidade",
+      "Dossier APF",
+      "Captação de franchisees",
     ],
   };
 }
@@ -100,10 +95,7 @@ export function faqJsonLd(items: { q: string; a: string }[]) {
     mainEntity: items.map((item) => ({
       "@type": "Question",
       name: item.q,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.a,
-      },
+      acceptedAnswer: { "@type": "Answer", text: item.a },
     })),
   };
 }

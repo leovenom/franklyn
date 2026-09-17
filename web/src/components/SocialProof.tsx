@@ -1,45 +1,29 @@
 "use client";
 
-import { m } from "framer-motion";
-import { fadeUp } from "@/lib/motion";
+import { getCopy } from "@/lib/copy";
 
-const segments = [
-  "Educação STEM",
-  "Food & beverage",
-  "Serviços móveis",
-  "Estética & saúde",
-  "Fitness boutique",
-];
-
-export function SocialProof({ market = "br" }: { market?: "br" | "pt" }) {
-  const label =
-    market === "pt"
-      ? "Metodologia aplicada em 5 segmentos"
-      : "Metodologia validada em 5 segmentos";
+export function SocialProof() {
+  const { label, segments } = getCopy().home.socialProof;
+  const row = [...segments, ...segments];
 
   return (
-    <section className="border-b border-franklyn-border bg-franklyn-navy px-6 py-6" aria-label="Segmentos atendidos">
-      <m.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={fadeUp}
-        className="mx-auto max-w-6xl"
-      >
-        <p className="text-center text-[10px] font-semibold uppercase tracking-[0.2em] text-franklyn-gold/80">
-          {label}
-        </p>
-        <ul className="mt-4 flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
-          {segments.map((name) => (
-            <li
-              key={name}
-              className="text-sm font-medium tracking-wide text-white/40 transition hover:text-white/70"
-            >
-              {name}
-            </li>
+    <section className="overflow-hidden py-8" aria-label="Segmentos atendidos">
+      <div className="page-shell mb-4 text-center">
+        <p className="label-caps text-franklyn-subtle">{label}</p>
+      </div>
+      <div className="overflow-hidden border-y-2 border-franklyn-border bg-white py-3">
+        <div className="marquee">
+          {[0, 1].map((set) => (
+            <div key={set} className="marquee-group" aria-hidden={set === 1 ? true : undefined}>
+              {row.map((name, i) => (
+                <span key={`${set}-${name}-${i}`} className="chip shrink-0 whitespace-nowrap">
+                  {name}
+                </span>
+              ))}
+            </div>
           ))}
-        </ul>
-      </m.div>
+        </div>
+      </div>
     </section>
   );
 }

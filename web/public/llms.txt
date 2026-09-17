@@ -1,29 +1,26 @@
-# Franklyn — Consultoria de Franquias
+# Franklyn: Consultoria de Franchising (Portugal)
 
-> Franqueie e escale seu negócio com score honesto, COF, SOPs e captação de franqueados.
-> Mercados: Brasil (principal) e Portugal (remoto-first).
+> A Franklyn ajuda fundadores a perceber se o negócio aguenta franquiciar (score 0–70), prepara dossier APF e apoia até ao primeiro franchisee. Portugal · valores em €.
 
-## Site
+## Páginas principais
 
-- Home BR: https://franklyn.com.br/
-- Home PT: https://franklyn.com.br/pt
-- Cases: https://franklyn.com.br/cases
-- Contact BR: https://franklyn.com.br/contact
-- Contact PT: https://franklyn.com.br/pt/contact
-- Leis BR/PT: https://franklyn.com.br/guia/leis-franquia
-- Modelo escala: https://franklyn.com.br/guia/modelo-escala
+- Home: https://franklyn.pt/
+- Cases (scores 38–55/70): https://franklyn.pt/cases
+- Contacto / diagnóstico gratuito: https://franklyn.pt/contact
+- Legislação APF: https://franklyn.pt/guia/leis-franquia
+- Modelo de escala (4 ondas): https://franklyn.pt/guia/modelo-escala
+- Sobre: https://franklyn.pt/about
 
 ## Serviços
 
-- Diagnóstico gratuito de franqueabilidade (score 0–70)
-- Pacotes Starter, Growth, Scale (Brasil)
-- Pacotes EU Light, EU Standard (Portugal)
-- COF, manual do franqueado, SOPs, landing de captação
+- Diagnóstico gratuito (45 min, score 0–70)
+- EU Light (€ 12.000): SOPs, checklist APF
+- EU Standard (€ 25.000): manual, funil, SOPs, 4 meses retainer
 
 ## Diferencial
 
-A Franklyn diz não quando o negócio não deve franquear ainda. Cases com scores de 38 a 55/70 demonstram metodologia transparente.
+Publicamos cases com score baixo (ex.: 38/70) quando ainda não recomendamos franquiciar.
 
 ## Contacto
 
-contato@franklyn.com.br
+contato@franklyn.pt

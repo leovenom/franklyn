@@ -26,7 +26,7 @@ export default function DoNotSellPage() {
       <ul>
         <li>Saber quais dados coletamos</li>
         <li>Solicitar exclusão</li>
-        <li>Opt-out de &quot;sale&quot; ou &quot;sharing&quot; — não aplicável pois não vendemos dados</li>
+        <li>Opt-out de &quot;sale&quot; ou &quot;sharing&quot;: não aplicável pois não vendemos dados</li>
         <li>Não discriminação por exercer direitos</li>
       </ul>
       <h2>Como exercer direitos</h2>

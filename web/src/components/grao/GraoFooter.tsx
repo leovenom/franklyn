@@ -6,7 +6,7 @@ export function GraoFooter() {
     <footer className="border-t border-amber-100 bg-[#f5f0e8] px-6 py-10">
       <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 sm:flex-row">
         <p className="text-sm text-amber-900/60">
-          © 2026 {GRAO_E_CIA.name}. Case fictício — portfolio{" "}
+          © 2026 {GRAO_E_CIA.name}. Case fictício no portfolio{" "}
           <Link href="/" className="font-medium text-amber-900 hover:underline">
             Franklyn
           </Link>

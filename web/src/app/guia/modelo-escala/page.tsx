@@ -4,43 +4,41 @@ import { PageLayout } from "@/components/PageLayout";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Modelo de escala de franchising — 4 ondas (Portugal)",
+  title: "Como escalar franchising em Portugal",
   description:
-    "Como escalar franchising em Portugal: piloto, regional e master franchise. Gates, KPIs e anti-padrões — metodologia Franklyn.",
+    "Quatro ondas: fundação, piloto, regional e master. Gates de score e KPIs antes de acelerar captação (metodologia Franklyn).",
   keywords: [
     "como escalar franchising",
     "expansão franchising Portugal",
     "primeiro franchisee",
     "master franchise Portugal",
   ],
-  path: "/pt/guia/modelo-escala",
-  market: "pt",
+  path: "/guia/modelo-escala",
 });
 
-export default function PtModeloEscalaPage() {
+export default function ModeloEscalaPage() {
   return (
     <PageLayout
-      market="pt"
-      title="Modelo de escala — 4 ondas"
-      description="Do diagnóstico à rede nacional em Portugal. Gates de go/no-go em cada fase."
+      title="Modelo de escala: 4 ondas"
+      description="Do diagnóstico à rede nacional. Em cada fase há um gate: avançar ou corrigir antes de abrir mais unidades."
       breadcrumbs={[
-        { label: "Guia", href: "/pt/guia/modelo-escala" },
-        { label: "Modelo de escala", href: "/pt/guia/modelo-escala" },
+        { label: "Guia", href: "/guia/leis-franquia" },
+        { label: "Modelo de escala", href: "/guia/modelo-escala" },
       ]}
     >
       <p>
-        Escala não é abrir unidades rápido — é <strong>replicar margem com churn baixo</strong>. A Franklyn
-        estrutura expansão em quatro ondas, com gates claros antes de acelerar captação.
+        Abrir lojas depressa não é escalar. Escalar é copiar margem sem matar a marca. Dividimos a expansão em quatro
+        ondas; só passa à seguinte quem cumpre o gate da fase anterior.
       </p>
 
       <h2>Gates de score (diagnóstico)</h2>
       <ul>
-        <li><strong>≥ 49/70</strong> — Franquiciar (Onda 0+)</li>
-        <li><strong>35–48</strong> — Ajustar antes (pivot, 2ª unidade, docs)</li>
-        <li><strong>&lt; 35</strong> — Não franquiciar (licenciamento ou aguardar)</li>
+        <li><strong>≥ 49/70</strong>: Franquiciar (Onda 0+)</li>
+        <li><strong>35–48</strong>: Ajustar antes (pivot, 2ª unidade, docs)</li>
+        <li><strong>&lt; 35</strong>: Não franquiciar (licenciamento ou aguardar)</li>
       </ul>
 
-      <h2>Onda 0 — Fundação (semanas 1–14)</h2>
+      <h2>Onda 0: Fundação (semanas 1–14)</h2>
       <p>Rede franchisável no papel + captação pronta.</p>
       <ul>
         <li>Dossier APF</li>
@@ -52,7 +50,7 @@ export default function PtModeloEscalaPage() {
         <strong>Pacote</strong>: EU Standard € 25.000 · Gate: dossier revisado por advogado PT.
       </p>
 
-      <h2>Onda 1 — Piloto (meses 4–9)</h2>
+      <h2>Onda 1: Piloto (meses 4–9)</h2>
       <p>1–3 franchisees validam sem fundador na operação.</p>
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
@@ -72,7 +70,7 @@ export default function PtModeloEscalaPage() {
       </div>
       <p>Gate: 2 unidades break-even → Onda 2.</p>
 
-      <h2>Onda 2 — Regional (meses 10–24)</h2>
+      <h2>Onda 2: Regional (meses 10–24)</h2>
       <ul>
         <li><strong>Unit</strong>: 1 franchisee / concelho ou zona</li>
         <li><strong>Multi-unit</strong>: mesmo operador 2–3 territórios</li>
@@ -80,7 +78,7 @@ export default function PtModeloEscalaPage() {
       </ul>
       <p>Gate: 8+ unidades · churn &lt; 5%/ano · royalties cobrem franchisador.</p>
 
-      <h2>Onda 3 — Nacional (meses 25–48)</h2>
+      <h2>Onda 3: Nacional (meses 25–48)</h2>
       <p>Meta 20–50 unidades. Franchisador self-sustaining.</p>
       <ul>
         <li>Mix receita: taxas 40–50% · royalties 35–45%</li>
@@ -103,8 +101,8 @@ export default function PtModeloEscalaPage() {
 
       <div className="rounded-xl border border-franklyn-accent bg-franklyn-bg p-6">
         <p className="font-semibold text-franklyn-ink">Qual onda é a sua?</p>
-        <p className="mt-2 text-sm">Diagnóstico gratuito em 45 min — saiba se está na Onda 0 ou ainda no ajuste.</p>
-        <Link href="/pt#contato" className="mt-4 inline-block text-sm font-semibold text-franklyn-accent hover:underline">
+        <p className="mt-2 text-sm">Diagnóstico gratuito em 45 min. Saiba se está na Onda 0 ou ainda no ajuste.</p>
+        <Link href="/#contato" className="mt-4 inline-block text-sm font-semibold text-franklyn-accent hover:underline">
           Marcar diagnóstico →
         </Link>
       </div>

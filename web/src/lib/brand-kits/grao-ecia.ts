@@ -2,9 +2,9 @@ import type { BrandKit } from "./types";
 
 export const graoBrandKit: BrandKit = {
   name: "Grão & Cia",
-  tagline: "Café especializado — calor artesanal, escala compacta",
+  tagline: "Café especializado, calor artesanal, escala compacta",
   mood:
-    "Premium acessível. Torrefação artesanal, luz da manhã, bairro que reconhece a marca — nunca corporativo frio.",
+    "Premium acessível. Torrefação artesanal, luz da manhã e bairro que reconhece a marca, sem parecer corporativo frio.",
   sensory: ["Aroma", "Calor", "Ritual", "Vizinhança", "Origem"],
   palette: [
     { name: "Espresso", hex: "#292524" },
@@ -14,9 +14,9 @@ export const graoBrandKit: BrandKit = {
     { name: "Copper warm", hex: "#C2410C" },
   ],
   typography: [
-    { role: "Display", font: "Instrument Serif — italic", sample: "Grão & Cia" },
-    { role: "Body", font: "DM Sans — regular", sample: "Blend exclusivo, torra central." },
-    { role: "Label", font: "DM Sans — caps tracking", sample: "COMPACTA · 45m²" },
+    { role: "Display", font: "Instrument Serif: italic", sample: "Grão & Cia" },
+    { role: "Body", font: "DM Sans: regular", sample: "Blend exclusivo, torra central." },
+    { role: "Label", font: "DM Sans: caps tracking", sample: "COMPACTA · 45m²" },
   ],
   applications: [
     { label: "Fachada Compacta", desc: "Letreiro serif + vitrine warm" },

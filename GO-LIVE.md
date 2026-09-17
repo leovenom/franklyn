@@ -5,7 +5,6 @@
 ```bash
 cd /Users/leonardt/franklyn/web
 cp .env.example .env.local
-# Edite .env.local com e-mail real se tiver
 npm install
 npm run build
 npm run dev   # smoke test em localhost:3000
@@ -13,12 +12,14 @@ npm run dev   # smoke test em localhost:3000
 
 ### URLs para testar
 
-- http://localhost:3000/ (BR)
-- http://localhost:3000/pt (Portugal)
+- http://localhost:3000/ — home LP + captura de leads
+- http://localhost:3000/contact
 - http://localhost:3000/cases
 - http://localhost:3000/guia/leis-franquia
 - http://localhost:3000/cases/codekids/franquia
-- http://localhost:3000/#contato
+- http://localhost:3000/sitemap.xml · http://localhost:3000/robots.txt
+- http://localhost:3000/pt → redirect 301 para `/`
+- http://localhost:3000/br → redirect 301 para `/`
 
 ## 2. Deploy Vercel
 
@@ -31,33 +32,28 @@ No dashboard Vercel → **Settings → Environment Variables**:
 
 | Variável | Valor |
 |----------|-------|
-| `NEXT_PUBLIC_SITE_URL` | `https://franklyn.com.br` |
-| `NEXT_PUBLIC_CONTACT_EMAIL` | seu e-mail real |
+| `NEXT_PUBLIC_SITE_URL` | `https://franklyn.pt` (ou URL Vercel temporária) |
+| `NEXT_PUBLIC_CONTACT_EMAIL` | e-mail real |
 
 Redeploy após setar variáveis.
 
 ## 3. Domínio
 
-Ver [web/DEPLOY.md](web/DEPLOY.md) — DNS A + CNAME www.
+Ver [web/DEPLOY.md](web/DEPLOY.md) — DNS para `franklyn.pt`.
 
-## 4. Commit (se ainda não feito)
+## 4. Google Search Console + SEO
 
-```bash
-cd /Users/leonardt/franklyn
-git add -A
-git status
-git commit -m "$(cat <<'EOF'
-Launch Franklyn: site, cases portfolio, SEO BR/PT, and franchise guides.
+Guia completo: [web/docs/SEO-GSC.md](web/docs/SEO-GSC.md)
 
-Complete Next.js site with conversion copy, Portugal locale, five case studies,
-legal/scaling docs, and deployment configuration.
-EOF
-)"
-```
+1. `NEXT_PUBLIC_SITE_URL` correto na Vercel
+2. Verificar `/sitemap.xml` e `/robots.txt`
+3. GSC → adicionar propriedade → `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION`
+4. Submeter `sitemap.xml`
+5. Pedir indexação de `/`, `/contact`, `/cases`, `/guia/leis-franquia`
 
 ## 5. Pós-deploy
 
 - [ ] OG preview (LinkedIn Post Inspector)
-- [ ] Google Search Console — submit sitemap
-- [ ] Trocar `contato@franklyn.com.br` por e-mail real quando existir
-- [ ] Formulário: migrar de mailto para Formspree/Resend (fase 2)
+- [ ] Formulário hero + CTA (mailto) testado em mobile
+- [ ] Trocar `contato@franklyn.pt` por e-mail real quando existir
+- [ ] Formspree/Resend para captura de leads (fase 2)

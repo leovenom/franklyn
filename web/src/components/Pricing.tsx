@@ -2,10 +2,24 @@
 
 import Link from "next/link";
 import { m } from "framer-motion";
-import { fadeUp, stagger } from "@/lib/motion";
+import { popIn, stagger } from "@/lib/motion";
 import { SectionHeader } from "./SectionHeader";
 import type { HomeCopy } from "@/lib/copy";
 import type { Plan } from "@/lib/data";
+import { Badge } from "./ui/Badge";
+import { Button } from "./ui/Button";
+import { Card } from "./ui/Card";
+import { Section } from "./ui/Section";
+
+function CheckIcon() {
+  return (
+    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-franklyn-quaternary text-franklyn-ink">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+        <path d="M5 12l5 5L20 7" />
+      </svg>
+    </span>
+  );
+}
 
 function PlanCard({
   plan,
@@ -20,31 +34,34 @@ function PlanCard({
 }) {
   return (
     <m.div
-      variants={fadeUp}
+      variants={popIn}
       custom={index}
-      className={`relative flex flex-col rounded-2xl border p-7 transition ${plan.featured ? "z-10 scale-[1.02] border-franklyn-accent shadow-xl shadow-franklyn-accent/15 lg:-my-2 lg:py-9" : "border-franklyn-border hover:border-franklyn-accent/40"} bg-white`}
+      className={`relative h-full ${plan.featured ? "z-10 lg:scale-110" : ""}`}
     >
       {plan.tag && (
-        <span className="absolute -top-2.5 left-5 rounded bg-franklyn-accent px-2.5 py-0.5 text-[10px] font-bold uppercase text-white">
+        <Badge
+          variant="accent"
+          className="absolute -top-4 left-1/2 z-20 -translate-x-1/2 rotate-[-8deg] bg-franklyn-tertiary text-franklyn-ink shadow-pop"
+        >
           {plan.tag}
-        </span>
+        </Badge>
       )}
-      <p className="text-xs font-semibold uppercase tracking-widest text-franklyn-muted">{plan.name}</p>
-      <p className="mt-2 text-2xl font-bold">{plan.price}</p>
-      <p className="mt-1 text-sm text-franklyn-muted">{plan.eur}</p>
-      <ul className="my-6 flex-1 space-y-2">
-        {plan.items.map((item) => (
-          <li key={item} className="text-sm text-franklyn-muted before:mr-2 before:text-franklyn-accent before:content-['✓']">
-            {item}
-          </li>
-        ))}
-      </ul>
-      <Link
-        href={`${homePath}#contato`}
-        className={`block rounded-md py-2.5 text-center text-sm font-semibold ${plan.featured ? "bg-franklyn-accent text-white hover:bg-franklyn-accent-dark" : "border border-franklyn-border hover:border-franklyn-ink"}`}
-      >
-        {ctaLabel}
-      </Link>
+      <Card featured={plan.featured} hover={!plan.featured} padding="lg" className="flex h-full flex-col">
+        <p className="text-sm font-medium text-franklyn-muted">{plan.name}</p>
+        <p className="font-display mt-2 text-4xl text-franklyn-ink">{plan.price}</p>
+        <p className="mt-1 text-caption text-franklyn-subtle">{plan.eur}</p>
+        <ul className="my-6 flex-1 space-y-3 border-t-2 border-franklyn-border pt-6">
+          {plan.items.map((item) => (
+            <li key={item} className="flex gap-2 text-caption text-franklyn-muted">
+              <CheckIcon />
+              {item}
+            </li>
+          ))}
+        </ul>
+        <Button href={`${homePath}#contato`} variant={plan.featured ? "primary" : "secondary"} showArrow={plan.featured} className="w-full">
+          {ctaLabel}
+        </Button>
+      </Card>
     </m.div>
   );
 }
@@ -52,36 +69,32 @@ function PlanCard({
 export function Pricing({
   copy,
   plans,
-  homePath = "/br",
+  homePath = "/",
 }: {
   copy: HomeCopy["pricing"];
   plans: Plan[];
   homePath?: string;
 }) {
-  const gridClass = plans.length >= 3 ? "lg:grid-cols-3" : "max-w-2xl lg:grid-cols-2";
-
   return (
-    <section id="pacotes" className="px-6 py-20">
-      <div className="mx-auto max-w-6xl">
-        <SectionHeader label={copy.label} title={copy.title} desc={copy.desc} />
-        <m.div
-          variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className={`mt-10 grid gap-5 ${gridClass}`}
-        >
-          {plans.map((plan, i) => (
-            <PlanCard key={plan.name} plan={plan} index={i} ctaLabel={copy.ctaPlan} homePath={homePath} />
-          ))}
-        </m.div>
-        <p className="mt-8 text-sm text-franklyn-muted">
-          {copy.footnote}{" "}
-          <Link href="/proposta" className="font-medium text-franklyn-accent hover:underline">
-            {copy.propostaLink}
-          </Link>
-        </p>
-      </div>
-    </section>
+    <Section id="pacotes">
+      <SectionHeader label={copy.label} title={copy.title} desc={copy.desc} centered />
+      <m.div
+        variants={stagger}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="mx-auto mt-12 grid max-w-4xl items-center gap-6 lg:grid-cols-2 lg:gap-8"
+      >
+        {plans.map((plan, i) => (
+          <PlanCard key={plan.name} plan={plan} index={i} ctaLabel={copy.ctaPlan} homePath={homePath} />
+        ))}
+      </m.div>
+      <p className="mt-10 text-center text-caption text-franklyn-muted">
+        {copy.footnote}{" "}
+        <Link href="/proposta" className="nav-link font-medium text-franklyn-accent">
+          {copy.propostaLink}
+        </Link>
+      </p>
+    </Section>
   );
 }

@@ -1,25 +1,25 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/Footer";
-import { MarketSelector } from "@/components/MarketSelector";
-import { Nav } from "@/components/Nav";
+import { HomeSections } from "@/components/HomeSections";
+import { getCopy } from "@/lib/copy";
 import { buildMetadata } from "@/lib/metadata";
-import { SITE_NAME } from "@/lib/site";
+
+const copy = getCopy();
 
 export const metadata: Metadata = buildMetadata({
-  title: "Escolha seu mercado",
-  description: `${SITE_NAME} — consultoria de franquias no Brasil e Portugal. Selecione Brasil (R$, COF) ou Portugal (€, APF).`,
+  title: copy.home.meta.title,
+  description: copy.home.meta.description,
+  keywords: copy.home.meta.keywords,
   path: "/",
-  noIndex: false,
 });
 
-export default function RootPage() {
+export default function HomePage() {
   return (
     <>
-      <Nav market="global" />
       <main id="main-content">
-        <MarketSelector />
+        <HomeSections />
       </main>
-      <Footer market="global" />
+      <Footer />
     </>
   );
 }

@@ -25,7 +25,7 @@ export default function PrivacyPage() {
       <h2>Dados que coletamos</h2>
       <ul>
         <li>Nome, e-mail e mensagem enviados via formulário de contato</li>
-        <li>Dados de navegação (cookies — ver <Link href="/cookies" className="text-franklyn-accent hover:underline">Cookie Notice</Link>)</li>
+        <li>Dados de navegação (cookies: ver <Link href="/cookies" className="text-franklyn-accent hover:underline">Cookie Notice</Link>)</li>
         <li>Informações comerciais fornecidas voluntariamente em diagnósticos e projetos</li>
       </ul>
       <h2>Finalidade</h2>

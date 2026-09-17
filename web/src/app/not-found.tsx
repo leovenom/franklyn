@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Footer } from "@/components/Footer";
-import { Nav } from "@/components/Nav";
+import { Button } from "@/components/ui/Button";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = buildMetadata({
   title: "Página não encontrada",
-  description: "A página solicitada não existe. Volte ao início ou entre em contato com a Franklyn.",
+  description: "A página solicitada não existe. Volte ao início ou entre em contacto com a Franklyn.",
   path: "/404",
   noIndex: true,
 });
@@ -14,30 +13,23 @@ export const metadata: Metadata = buildMetadata({
 export default function NotFound() {
   return (
     <>
-      <Nav market="global" />
       <main
         id="main-content"
-        className="mx-auto flex min-h-[60vh] max-w-lg flex-col items-center justify-center px-6 py-24 text-center"
+        className="page-shell flex min-h-[60vh] flex-col items-center justify-center py-24 text-center"
       >
-        <p className="text-sm font-semibold uppercase tracking-widest text-franklyn-accent">Erro 404</p>
-        <h1 className="mt-4 font-serif text-4xl font-normal tracking-tight">Página não encontrada</h1>
-        <p className="mt-4 text-franklyn-muted">O endereço pode estar incorreto ou a página foi movida.</p>
+        <p className="label-caps text-franklyn-accent">Erro 404</p>
+        <h1 className="font-display mt-4 text-4xl text-franklyn-ink">Página não encontrada</h1>
+        <p className="mt-4 max-w-prose text-franklyn-muted">
+          O endereço pode estar errado ou a página foi movida.
+        </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <Link
-            href="/"
-            className="rounded-lg bg-franklyn-accent px-5 py-2.5 text-sm font-semibold text-white hover:bg-franklyn-accent-dark"
-          >
-            Escolher mercado
-          </Link>
-          <Link
-            href="/br/contact"
-            className="rounded-lg border border-franklyn-border px-5 py-2.5 text-sm font-semibold hover:border-franklyn-ink"
-          >
-            Fale conosco
-          </Link>
+          <Button href="/">Ir para a home</Button>
+          <Button href="/contact" variant="secondary">
+            Contacto
+          </Button>
         </div>
       </main>
-      <Footer market="global" />
+      <Footer />
     </>
   );
 }

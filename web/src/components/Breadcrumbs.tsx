@@ -1,40 +1,32 @@
 import Link from "next/link";
-import { getCopy, type Market } from "@/lib/copy";
+import { getCopy } from "@/lib/copy";
 import { JsonLd } from "./JsonLd";
 import { breadcrumbJsonLd } from "@/lib/metadata";
 
 type Crumb = { label: string; href: string };
 
-export function Breadcrumbs({
-  items,
-  market = "br",
-  homeHref,
-}: {
-  items: Crumb[];
-  market?: Market;
-  homeHref?: string;
-}) {
-  const home = homeHref ?? getCopy(market).homePath;
+export function Breadcrumbs({ items }: { items: Crumb[] }) {
+  const home = getCopy().homePath;
   const schemaItems = [{ name: "Home", path: home }, ...items.map((i) => ({ name: i.label, path: i.href }))];
 
   return (
-    <nav aria-label="Breadcrumb" className="mb-8">
+    <nav aria-label="Breadcrumb">
       <JsonLd data={breadcrumbJsonLd(schemaItems)} />
-      <ol className="flex flex-wrap items-center gap-2 text-sm text-franklyn-muted">
+      <ol className="flex flex-wrap items-center gap-2 text-caption text-franklyn-subtle">
         <li>
-          <Link href={home} className="hover:text-franklyn-ink">
+          <Link href={home} className="nav-link">
             Home
           </Link>
         </li>
         {items.map((item, i) => (
-          <li key={item.href} className="flex items-center gap-2">
+          <li key={`${i}-${item.href}`} className="flex items-center gap-2">
             <span aria-hidden="true">/</span>
             {i === items.length - 1 ? (
-              <span className="font-medium text-franklyn-ink" aria-current="page">
+              <span className="text-franklyn-muted" aria-current="page">
                 {item.label}
               </span>
             ) : (
-              <Link href={item.href} className="hover:text-franklyn-ink">
+              <Link href={item.href} className="nav-link">
                 {item.label}
               </Link>
             )}

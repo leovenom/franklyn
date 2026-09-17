@@ -1,13 +1,8 @@
-import { copyBR } from "./br";
-import { copyPT } from "./pt";
-import type { Market, MarketCopy } from "./types";
+export { copy } from "./pt";
+export type { HomeCopy, MarketCopy, NavLink } from "./types";
 
-export type { Market, HomeCopy, MarketCopy } from "./types";
+import { copy } from "./pt";
 
-export function getCopy(market: Market): MarketCopy {
-  return market === "pt" ? copyPT : copyBR;
-}
-
-export function alternateMarket(market: Market): Market {
-  return market === "pt" ? "br" : "pt";
+export function getCopy() {
+  return copy;
 }

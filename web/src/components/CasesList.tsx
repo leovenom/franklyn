@@ -1,68 +1,57 @@
 import Link from "next/link";
-import type { Market } from "@/lib/copy";
 import { portfolioCases } from "@/lib/cases";
+import { Card } from "./ui/Card";
 
 const toneClass = {
-  success: "text-emerald-700 bg-emerald-50",
-  info: "text-sky-700 bg-sky-50",
-  warning: "text-amber-700 bg-amber-50",
-  danger: "text-red-700 bg-red-50",
+  success: "text-emerald-700 bg-emerald-100 border-emerald-300",
+  info: "text-sky-700 bg-sky-100 border-sky-300",
+  warning: "text-amber-700 bg-amber-100 border-amber-300",
+  danger: "text-red-700 bg-red-100 border-red-300",
 };
 
-export function CasesList({ market, hideHeader = false }: { market: Market; hideHeader?: boolean }) {
-  const home = market === "br" ? "/br" : "/pt";
-
+export function CasesList({ hideHeader = false }: { hideHeader?: boolean }) {
   return (
     <>
       {!hideHeader && (
         <>
-          <p className="text-xs font-semibold uppercase tracking-widest text-franklyn-accent">Portfolio</p>
-          <h1 className="mt-3 font-serif text-4xl font-normal tracking-tight">Cases de franqueabilidade</h1>
+          <p className="label-caps text-franklyn-accent">Portefólio</p>
+          <h1 className="font-display mt-3 text-4xl text-franklyn-ink">Cases de franqueabilidade</h1>
         </>
       )}
 
       <ul className={`space-y-4 ${hideHeader ? "" : "mt-12"}`}>
-        {portfolioCases.map((c) => {
-          const verdict = market === "pt" && c.verdictPT ? c.verdictPT : c.verdict;
-          const pkg = market === "pt" ? c.packagePT : c.package;
-          const segment = market === "pt" && c.segmentPT ? c.segmentPT : c.segment;
-
-          return (
-            <li
-              key={c.slug}
-              className={`rounded-2xl border p-6 transition hover:shadow-md ${c.highlight ? "border-franklyn-accent/50 bg-white shadow-sm ring-1 ring-franklyn-accent/10" : "border-franklyn-border bg-white hover:border-franklyn-accent/20"}`}
-            >
+        {portfolioCases.map((c) => (
+          <li key={c.slug}>
+            <Card hover padding="md" featured={c.highlight} className={c.highlight ? "" : ""}>
               <div className="flex flex-wrap items-start justify-between gap-4">
                 <div>
                   {c.flagship && (
-                    <span className="mb-2 inline-block rounded-full bg-franklyn-accent/10 px-2 py-0.5 text-xs font-semibold text-franklyn-accent">
-                      Flagship
-                    </span>
+                    <span className="chip mb-2 bg-franklyn-tertiary text-franklyn-ink">Flagship</span>
                   )}
-                  <h2 className="text-xl font-semibold">
-                    <Link href={c.detailUrl} className="hover:text-franklyn-accent">
+                  <h2 className="text-lg font-medium">
+                    <Link href={c.detailUrl} className="nav-link font-display font-bold text-franklyn-ink hover:text-franklyn-accent">
                       {c.name} →
                     </Link>
                   </h2>
-                  <p className="mt-1 text-sm text-franklyn-muted">{segment}</p>
+                  <p className="mt-1 text-caption text-franklyn-muted">{c.segment}</p>
                 </div>
-                <p className="text-2xl font-bold tabular-nums">{c.score}/70</p>
+                <p className="font-display text-2xl tabular-nums text-franklyn-ink">{c.score}/70</p>
               </div>
               <div className="mt-4 flex flex-wrap gap-2">
-                <span className={`rounded-full px-3 py-1 text-xs font-semibold ${toneClass[c.verdictTone]}`}>
-                  {verdict}
+                <span className={`rounded-pill border-2 px-3 py-1 text-caption font-medium ${toneClass[c.verdictTone]}`}>
+                  {c.verdict}
                 </span>
-                <span className="rounded-full bg-franklyn-bg px-3 py-1 text-xs text-franklyn-muted">{pkg}</span>
+                <span className="chip text-caption">{c.package}</span>
               </div>
-            </li>
-          );
-        })}
+            </Card>
+          </li>
+        ))}
       </ul>
 
-      <p className="mt-12 text-sm text-franklyn-muted">
-        {market === "br" ? "Quer um diagnóstico?" : "Quer um diagnóstico?"}{" "}
-        <Link href={`${home}#contato`} className="font-medium text-franklyn-accent hover:underline">
-          {market === "br" ? "Agende gratuitamente" : "Marque gratuitamente"}
+      <p className="mt-12 text-caption text-franklyn-muted">
+        Quer o score do seu negócio?{" "}
+        <Link href="/#contato" className="nav-link font-medium text-franklyn-accent">
+          Marque 45 minutos, é gratuito
         </Link>
       </p>
     </>

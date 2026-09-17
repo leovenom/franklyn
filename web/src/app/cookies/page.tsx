@@ -23,8 +23,8 @@ export default function CookiesPage() {
       </p>
       <h2>Tipos de cookies</h2>
       <ul>
-        <li><strong>Essenciais</strong> — sessão, segurança, preferências de idioma</li>
-        <li><strong>Analíticos</strong> — métricas anônimas de tráfego (somente após consentimento)</li>
+        <li><strong>Essenciais</strong>: sessão, segurança, preferências de idioma</li>
+        <li><strong>Analíticos</strong>: métricas anônimas de tráfego (somente após consentimento)</li>
       </ul>
       <h2>Gerenciar preferências</h2>
       <p>

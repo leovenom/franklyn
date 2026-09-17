@@ -2,9 +2,9 @@ import type { BrandKit } from "./types";
 
 export const codekidsBrandKit: BrandKit = {
   name: "CodeKids",
-  tagline: "Criar com código — confiança para pais, diversão para crianças",
+  tagline: "Criar com código, confiança para pais, diversão para crianças",
   mood:
-    "Tech-forward e acolhedor. Sala de aula luminosa, colaborativa, futuro que parece alcançável — nunca intimidador.",
+    "Tech-forward e acolhedor. Sala de aula luminosa e colaborativa, com futuro que parece alcançável e nunca intimidador.",
   sensory: ["Curiosidade", "Segurança", "Jogo", "Descoberta", "Comunidade"],
   palette: [
     { name: "Indigo core", hex: "#4F46E5" },
@@ -14,8 +14,8 @@ export const codekidsBrandKit: BrandKit = {
     { name: "Cloud white", hex: "#F8FAFC" },
   ],
   typography: [
-    { role: "Display", font: "Rounded sans — bold", sample: "CodeKids" },
-    { role: "Body", font: "DM Sans — regular", sample: "Aprender programação brincando." },
+    { role: "Display", font: "Rounded sans: bold", sample: "CodeKids" },
+    { role: "Body", font: "DM Sans: regular", sample: "Aprender programação brincando." },
     { role: "Code", font: "JetBrains Mono", sample: "print('Olá, mundo!')" },
   ],
   applications: [

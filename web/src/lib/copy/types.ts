@@ -1,7 +1,5 @@
 import type { Plan } from "@/lib/data";
 
-export type Market = "br" | "pt";
-
 export type HomeCopy = {
   meta: {
     title: string;
@@ -14,15 +12,26 @@ export type HomeCopy = {
     marketLabel: string;
   };
   hero: {
-    eyebrow: string;
+    eyebrow?: string;
     h1: string;
-    h1Accent: string;
+    h1Accent?: string;
     sub: string;
     ctaPrimary: string;
     ctaSecondary: string;
-    scoreTitle: string;
+    scoreTitle?: string;
   };
   trust: { value: string; label: string }[];
+  diagnosis: {
+    label: string;
+    title: string;
+    desc: string;
+    flow: { num: string; title: string; desc: string }[];
+    criteriaTitle: string;
+    criteria: string[];
+    outcomesTitle: string;
+    outcomes: { range: string; title: string; desc: string; tone: "success" | "warning" | "danger" }[];
+    cta: string;
+  };
   steps: {
     label: string;
     title: string;
@@ -51,7 +60,6 @@ export type HomeCopy = {
     label: string;
     title: string;
     desc: string;
-    brTab: string;
     euTab: string;
     footnote: string;
     propostaLink: string;
@@ -73,6 +81,15 @@ export type HomeCopy = {
   footer: {
     tagline: string;
   };
+  features: {
+    title: string;
+    desc: string;
+    color: "violet" | "pink" | "amber";
+  }[];
+  socialProof: {
+    label: string;
+    segments: string[];
+  };
 };
 
 export type NavLink = { href: string; label: string };
@@ -80,13 +97,10 @@ export type NavLink = { href: string; label: string };
 export type MarketCopy = {
   home: HomeCopy;
   navLinks: NavLink[];
-  plansBR: Plan[];
   plansEU: Plan[];
-  defaultPricingMarket: "br" | "eu";
+  defaultPricingMarket: "eu";
   htmlLang: string;
   ogLocale: string;
   contactPath: string;
   homePath: string;
-  otherMarketPath: string;
-  otherMarketLabel: string;
 };

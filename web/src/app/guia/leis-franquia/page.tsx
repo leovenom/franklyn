@@ -4,34 +4,28 @@ import { PageLayout } from "@/components/PageLayout";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Legislação de franchising em Portugal — APF e boa-fé",
+  title: "Legislação de franchising em Portugal",
   description:
-    "Guia Franklyn Portugal: dossier de boa-fé, Código Deontológico APF, prazos e checklist compliance para franquiciar em Portugal.",
+    "O que a APF exige antes de assinar: dossier de boa-fé, prazos típicos e checklist prático. Referência Franklyn. Não substitui advogado.",
   keywords: [
     "franchising Portugal legislação",
     "código deontológico APF",
     "dossier franchising Portugal",
     "RGPD franchising",
   ],
-  path: "/pt/guia/leis-franquia",
-  market: "pt",
+  path: "/guia/leis-franquia",
 });
 
-export default function PtLeisFranquiaPage() {
+export default function LeisFranquiaPage() {
   return (
     <PageLayout
-      market="pt"
-      title="Legislação de franchising — Portugal"
-      description="Boa-fé, dossier APF, prazos e checklist compliance. Referência — não substitui advogado."
-      breadcrumbs={[
-        { label: "Guia", href: "/pt/guia/leis-franquia" },
-        { label: "Legislação", href: "/pt/guia/leis-franquia" },
-      ]}
+      title="Legislação de franchising: Portugal"
+      description="Boa-fé, dossier APF, prazos e checklist antes de captar franchisees. Referência Franklyn. Não substitui advogado."
+      breadcrumbs={[{ label: "Legislação", href: "/guia/leis-franquia" }]}
     >
       <p>
-        Em Portugal não existe uma lei específica como a Lei 13.966 brasileira. O franchisador deve informar
-        com <strong>boa-fé</strong> (Código Civil art. 227.º) antes de documentos vinculativos. A APF segue
-        o <strong>Código Deontológico Europeu</strong>.
+        Em Portugal não há uma lei de franchising à la carte. Há dever de informar com <strong>boa-fé</strong> (Código
+        Civil, art. 227.º) antes de o candidato assinar. A APF alinha-se ao <strong>Código Deontológico Europeu</strong>.
       </p>
 
       <h2>Código Deontológico APF</h2>
@@ -59,12 +53,12 @@ export default function PtLeisFranquiaPage() {
         <li>Modelo financeiro com payback realista em €</li>
       </ul>
 
-      <div className="rounded-xl border border-franklyn-accent bg-franklyn-bg p-6">
-        <p className="font-semibold text-franklyn-ink">Precisa de dossier APF?</p>
+      <div className="sticker-card border-franklyn-accent p-6">
+        <p className="font-display font-bold text-franklyn-ink">Precisa de dossier APF?</p>
         <p className="mt-2 text-sm">
-          Comece pelo diagnóstico gratuito — score ≥ 49/70 para seguir com pacote EU Standard.
+          Comece pelo diagnóstico gratuito. Score ≥ 49/70 costuma ser o ponto de partida para o pacote EU Standard.
         </p>
-        <Link href="/pt#contato" className="mt-4 inline-block text-sm font-semibold text-franklyn-accent hover:underline">
+        <Link href="/#contato" className="mt-4 inline-block text-sm font-semibold text-franklyn-accent hover:underline">
           Marcar diagnóstico →
         </Link>
       </div>

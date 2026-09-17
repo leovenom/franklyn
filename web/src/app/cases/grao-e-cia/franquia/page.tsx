@@ -8,9 +8,9 @@ import { GRAO_E_CIA, graoFormatos } from "@/lib/grao-ecia";
 import { buildMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Grão & Cia — Seja franqueado",
+  title: "Grão & Cia: Seja franqueado",
   description:
-    "Franquia Grão & Cia: café especializado formato Compacta. Investimento R$ 360–540k, blend exclusivo, torrefação central.",
+    "Franchising Grão & Cia: café especializado formato Compacta. Investimento € 60–90k, blend exclusivo, torrefação central.",
   path: "/cases/grao-e-cia/franquia",
 });
 
@@ -36,7 +36,7 @@ export default function GraoFranquiaPage() {
                 href="#contato"
                 className="rounded-lg bg-amber-900 px-8 py-3 text-sm font-semibold text-amber-50 shadow-lg shadow-amber-900/20 hover:bg-amber-950"
               >
-                Quero ser franqueado
+                Quero ser franchisee
               </Link>
               <Link
                 href="#formatos"
@@ -51,8 +51,8 @@ export default function GraoFranquiaPage() {
         <section className="border-y border-amber-100 bg-white px-6 py-12">
           <div className="mx-auto grid max-w-5xl gap-8 sm:grid-cols-4">
             {[
-              { n: "2", label: "Unidades SP" },
-              { n: "R$ 28", label: "Ticket médio" },
+              { n: "2", label: "Unidades Lisboa" },
+              { n: "€ 4,50", label: "Ticket médio" },
               { n: "5%", label: "Royalties" },
               { n: "220", label: "Clientes/dia (meta)" },
             ].map((s) => (
@@ -68,7 +68,7 @@ export default function GraoFranquiaPage() {
           <div className="mx-auto max-w-5xl">
             <h2 className="text-center text-3xl font-bold">Dois formatos, uma marca</h2>
             <p className="mx-auto mt-4 max-w-xl text-center text-amber-900/70">
-              Fase 1: expansão via Compacta. Flagship reservada a SP capital.
+              Fase 1: expansão via Compacta. Flagship reservada a Lisboa.
             </p>
             <div className="mt-12 grid gap-6 md:grid-cols-2">
               {graoFormatos.map((f) => (
@@ -78,7 +78,7 @@ export default function GraoFranquiaPage() {
                 >
                   {f.active && (
                     <span className="rounded-full bg-amber-900 px-3 py-1 text-xs font-semibold text-amber-50">
-                      Aberto para franqueados
+                      Aberto para franchisees
                     </span>
                   )}
                   <h3 className="mt-4 text-2xl font-bold">{f.name}</h3>
@@ -104,11 +104,11 @@ export default function GraoFranquiaPage() {
             <h2 className="text-center text-3xl font-bold">O que você recebe</h2>
             <ul className="mt-12 grid gap-4 md:grid-cols-2">
               {[
-                "Blend exclusivo Grão Signature — torrefação central",
+                "Blend exclusivo Grão Signature: torrefação central",
                 "Treinamento barista 80h + certificação GC-BAR-L1",
-                "Fichas técnicas — espresso, cappuccino, latte art",
-                "5 SOPs core + manual franqueado",
-                "Supply hub — cups, xaropes, insumos homologados",
+                "Fichas técnicas: espresso, cappuccino, latte art",
+                "5 SOPs core + manual franchisee",
+                "Supply hub: cups, xaropes, insumos homologados",
                 "Campanhas nacionais (fundo marketing 1,5%)",
               ].map((item) => (
                 <li key={item} className="flex gap-3 rounded-xl bg-amber-800/50 p-5 text-sm">
@@ -123,12 +123,12 @@ export default function GraoFranquiaPage() {
         <section id="investimento" className="px-6 py-20">
           <div className="mx-auto max-w-3xl">
             <h2 className="text-center text-3xl font-bold">Investimento Compacta</h2>
-            <p className="mt-4 text-center text-amber-900/60">Valores em R$ · € ref. €1 = R$ 6,00</p>
+            <p className="mt-4 text-center text-amber-900/60">Valores em euro (€)</p>
             <div className="mt-10 overflow-hidden rounded-2xl border border-amber-200 bg-white">
               <table className="w-full text-sm">
                 <tbody className="divide-y divide-amber-50">
                   <tr>
-                    <td className="px-6 py-4 text-amber-900/70">Taxa de franquia</td>
+                    <td className="px-6 py-4 text-amber-900/70">Taxa de franchising</td>
                     <td className="px-6 py-4 text-right font-semibold">{GRAO_E_CIA.fee}</td>
                   </tr>
                   <tr>
@@ -166,7 +166,7 @@ export default function GraoFranquiaPage() {
               </div>
               <div>
                 <label htmlFor="cidade" className="block text-xs font-medium text-amber-900/70">Cidade de interesse</label>
-                <input id="cidade" name="cidade" type="text" placeholder="Ex.: Ribeirão Preto, SP" className="mt-1 w-full rounded-lg border border-amber-200 px-4 py-2 text-sm focus:border-amber-600 focus:outline-none focus:ring-1 focus:ring-amber-600" />
+                <input id="cidade" name="cidade" type="text" placeholder="Ex.: Aveiro, Coimbra" className="mt-1 w-full rounded-lg border border-amber-200 px-4 py-2 text-sm focus:border-amber-600 focus:outline-none focus:ring-1 focus:ring-amber-600" />
               </div>
               <button type="submit" className="w-full rounded-lg bg-amber-900 py-3 text-sm font-semibold text-amber-50 hover:bg-amber-950">
                 Enviar candidatura

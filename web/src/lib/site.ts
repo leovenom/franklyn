@@ -1,65 +1,49 @@
 /** Central site configuration — update NEXT_PUBLIC_SITE_URL for custom domain */
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ?? "https://franklyn.com.br";
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ?? "https://franklyn.pt";
 
 export const SITE_NAME = "Franklyn";
 
 export const CONTACT_EMAIL =
-  process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "contato@franklyn.com.br";
+  process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "contato@franklyn.pt";
 
 export const COMPANY = {
   name: "Franklyn",
-  legalName: "Franklyn Consultoria em Franquias Ltda.",
-  tagline: "Franqueie e escale seu negócio — com inteligência.",
+  legalName: "Franklyn Consultoria em Franchising, Unipessoal Lda.",
+  tagline: "Franquiciar com método e dizer não quando ainda não é altura.",
   description:
-    "Consultoria de franquias no Brasil e Portugal. Diagnóstico gratuito, score 0–70, COF, SOPs e captação de franqueados. Dizemos não quando o negócio não está pronto.",
-  locale: "pt_BR",
-  currencyNote: "€1 = R$ 6,00 (referência indicativa)",
+    "Consultoria de franchising em Portugal. Diagnóstico gratuito, score 0–70, dossier APF e apoio até à captação do primeiro franchisee.",
+  locale: "pt_PT",
   address: {
-    streetAddress: "Av. Paulista, 1000",
-    addressLocality: "São Paulo",
-    addressRegion: "SP",
-    postalCode: "01310-100",
-    addressCountry: "BR",
+    streetAddress: "Av. da Liberdade, 100",
+    addressLocality: "Lisboa",
+    addressRegion: "Lisboa",
+    postalCode: "1250-096",
+    addressCountry: "PT",
   },
-  phone: "+55-11-3000-0000",
+  phone: "+351-21-000-0000",
   sameAs: [
     "https://www.linkedin.com/company/franklyn",
     "https://instagram.com/franklyn",
   ],
 };
 
-export const MAIN_NAV = [
-  { href: "/#como", label: "Como funciona" },
-  { href: "/#pacotes", label: "Pacotes" },
-  { href: "/cases", label: "Cases" },
-  { href: "/about", label: "Sobre" },
-  { href: "/contact", label: "Contato" },
-] as const;
-
 export const LEGAL_NAV = [
-  { href: "/privacy", label: "Privacy Policy" },
-  { href: "/cookies", label: "Cookie Notice" },
-  { href: "/do-not-sell", label: "Do Not Sell My Personal Information" },
-  { href: "/accessibility", label: "Accessibility" },
-  { href: "/security", label: "Security" },
-  { href: "/terms", label: "Terms of Use" },
+  { href: "/privacy", label: "Privacidade" },
+  { href: "/cookies", label: "Cookies" },
+  { href: "/terms", label: "Termos" },
+  { href: "/security", label: "Segurança" },
+  { href: "/accessibility", label: "Acessibilidade" },
+  { href: "/do-not-sell", label: "Não vender dados" },
 ] as const;
 
 export const ALL_ROUTES = [
   "/",
-  "/br",
-  "/br/contact",
-  "/br/about",
-  "/br/cases",
-  "/br/guia/leis-franquia",
-  "/br/guia/modelo-escala",
-  "/pt",
-  "/pt/contact",
-  "/pt/about",
-  "/pt/cases",
-  "/pt/guia/leis-franquia",
-  "/pt/guia/modelo-escala",
+  "/contact",
+  "/about",
+  "/cases",
+  "/guia/leis-franquia",
+  "/guia/modelo-escala",
   "/cases/codekids",
   "/cases/codekids/franquia",
   "/cases/grao-e-cia",

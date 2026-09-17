@@ -32,7 +32,8 @@ export default function SecurityPage() {
       </ul>
       <h2>Dados</h2>
       <p>
-        Formulários utilizam mailto local — dados não são armazenados em banco pelo site estático.
+        Formulários enviam leads para o Send Studio (CRM próprio) via API server-side; token nunca exposto no browser.
+        Fallback mailto se o CRM não estiver configurado.
         Projetos de consultoria seguem contratos com confidencialidade e acesso restrito.
       </p>
       <h2>Reporte de vulnerabilidades</h2>

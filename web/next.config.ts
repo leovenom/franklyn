@@ -10,11 +10,10 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      { source: "/contact", destination: "/br/contact", permanent: true },
-      { source: "/about", destination: "/br/about", permanent: true },
-      { source: "/cases", destination: "/br/cases", permanent: true },
-      { source: "/guia/leis-franquia", destination: "/br/guia/leis-franquia", permanent: true },
-      { source: "/guia/modelo-escala", destination: "/br/guia/modelo-escala", permanent: true },
+      { source: "/pt", destination: "/", permanent: true },
+      { source: "/pt/:path*", destination: "/:path*", permanent: true },
+      { source: "/br", destination: "/", permanent: true },
+      { source: "/br/:path*", destination: "/", permanent: true },
     ];
   },
   async headers() {
