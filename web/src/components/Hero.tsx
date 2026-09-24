@@ -52,8 +52,14 @@ export function Hero({
               {copy.sub}
             </m.p>
 
-            <m.div variants={popIn} custom={copy.eyebrow ? 3 : 2} className="mt-8 max-w-md">
-              <LeadForm placeholder={cta.placeholder} button={cta.button} fine={cta.fine} layout="inline" />
+            <m.div variants={popIn} custom={copy.eyebrow ? 3 : 2} className="mt-8 max-w-xl">
+              <LeadForm
+                namePlaceholder={cta.namePlaceholder}
+                placeholder={cta.placeholder}
+                button={cta.button}
+                fine={cta.fine}
+                layout="inline"
+              />
             </m.div>
 
             <m.div variants={popIn} custom={copy.eyebrow ? 4 : 3} className="mt-8 flex flex-wrap items-center gap-3">

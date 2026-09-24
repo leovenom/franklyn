@@ -74,6 +74,7 @@ export type HomeCopy = {
   cta: {
     title: string;
     sub: string;
+    namePlaceholder?: string;
     placeholder: string;
     button: string;
     fine: string;
@@ -94,9 +95,39 @@ export type HomeCopy = {
 
 export type NavLink = { href: string; label: string };
 
+export type UiCopy = {
+  skipToContent: string;
+  openMenu: string;
+  closeMenu: string;
+  navMenu: string;
+  navigation: string;
+  legal: string;
+  language: string;
+};
+
+export type ContactPageCopy = {
+  meta: { title: string; description: string; keywords: string[] };
+  title: string;
+  description: string;
+  breadcrumb: string;
+  intro: string;
+  nextSteps: string;
+  scoreDetail: string;
+  scoreLinkLabel: string;
+  formTitle: string;
+  formIntro: string;
+};
+
 export type MarketCopy = {
+  locale: "pt" | "en";
   home: HomeCopy;
   navLinks: NavLink[];
+  footerLinks: NavLink[];
+  legalNav: NavLink[];
+  ui: UiCopy;
+  pages: {
+    contact: ContactPageCopy;
+  };
   plansEU: Plan[];
   defaultPricingMarket: "eu";
   htmlLang: string;

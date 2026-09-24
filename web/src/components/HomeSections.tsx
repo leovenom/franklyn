@@ -1,7 +1,7 @@
 "use client";
 
 import { LazyMotion, domAnimation } from "framer-motion";
-import { getCopy } from "@/lib/copy";
+import { useCopy } from "@/components/LocaleProvider";
 import { JsonLd } from "./JsonLd";
 import { faqJsonLd } from "@/lib/metadata";
 import { Hero } from "./Hero";
@@ -18,7 +18,7 @@ import { FAQ } from "./FAQ";
 import { CTA } from "./CTA";
 
 export function HomeSections() {
-  const { home, homePath, plansEU } = getCopy();
+  const { home, homePath, plansEU } = useCopy();
 
   return (
     <LazyMotion features={domAnimation} strict>

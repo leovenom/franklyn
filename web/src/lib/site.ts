@@ -5,7 +5,7 @@ export const SITE_URL =
 export const SITE_NAME = "Franklyn";
 
 export const CONTACT_EMAIL =
-  process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "contato@franklyn.pt";
+  process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "leonardt@outlook.com";
 
 export const COMPANY = {
   name: "Franklyn",

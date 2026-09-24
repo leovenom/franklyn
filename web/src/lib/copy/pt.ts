@@ -2,12 +2,61 @@ import type { MarketCopy } from "./types";
 import { plansEU } from "@/lib/data";
 
 export const copy: MarketCopy = {
+  locale: "pt",
   htmlLang: "pt-PT",
   ogLocale: "pt_PT",
   homePath: "/",
   contactPath: "/contact",
   defaultPricingMarket: "eu",
   plansEU,
+  ui: {
+    skipToContent: "Saltar para o conteúdo",
+    openMenu: "Abrir menu",
+    closeMenu: "Fechar menu",
+    navMenu: "Menu de navegação",
+    navigation: "Navegação",
+    legal: "Legal",
+    language: "Idioma",
+  },
+  footerLinks: [
+    { href: "/guia/leis-franquia", label: "Legislação APF" },
+    { href: "/guia/modelo-escala", label: "Modelo de escala" },
+    { href: "/proposta", label: "Proposta comercial" },
+  ],
+  legalNav: [
+    { href: "/privacy", label: "Privacidade" },
+    { href: "/cookies", label: "Cookies" },
+    { href: "/terms", label: "Termos" },
+    { href: "/security", label: "Segurança" },
+    { href: "/accessibility", label: "Acessibilidade" },
+    { href: "/do-not-sell", label: "Não vender dados" },
+  ],
+  pages: {
+    contact: {
+      meta: {
+        title: "Contacto e diagnóstico gratuito",
+        description:
+          "Marque 45 minutos com a Franklyn. Score 0–70, recomendação franca, sem compromisso. Resposta em 2 dias úteis.",
+        keywords: [
+          "contacto franchising Portugal",
+          "diagnóstico franqueabilidade",
+          "consultoria franchising Lisboa",
+        ],
+      },
+      title: "Marcar diagnóstico gratuito",
+      description:
+        "45 minutos para perceber se faz sentido franquiciar e o que falta fazer se ainda não estiver pronto.",
+      breadcrumb: "Contacto",
+      intro:
+        "Envie e-mail para {{email}} ou preencha o formulário abaixo. Trabalhamos remoto em Portugal: Lisboa, Porto ou outra região, tanto faz para a primeira conversa.",
+      nextSteps: "O que acontece a seguir",
+      scoreDetail: "Detalhe dos critérios e faixas de score na",
+      scoreLinkLabel: "secção diagnóstico",
+      formTitle: "Formulário de qualificação",
+      formIntro:
+        "Os dados ajudam-nos a preparar a conversa de 45 minutos e cumprir o RGPD.",
+    },
+  },
   navLinks: [
     { href: "/#diagnostico", label: "Diagnóstico" },
     { href: "/#como", label: "Como funciona" },
@@ -56,7 +105,7 @@ export const copy: MarketCopy = {
         {
           num: "1",
           title: "Marca",
-          desc: "Formulário ou e-mail. Respondemos em 2 dias úteis com data para a chamada.",
+          desc: "Formulário de qualificação ou e-mail. Respondemos em 2 dias úteis com data para a chamada.",
         },
         {
           num: "2",
@@ -221,9 +270,10 @@ export const copy: MarketCopy = {
     cta: {
       title: "Quer saber o score?",
       sub: "45 minutos · online · sem compromisso",
-      placeholder: "O seu e-mail",
+      namePlaceholder: "O seu nome",
+      placeholder: "E-mail profissional",
       button: "Marcar diagnóstico",
-      fine: "Respondemos em 2 dias úteis · RGPD",
+      fine: "Respondemos em 2 dias úteis",
     },
     footer: {
       tagline: "Consultoria de franchising · Portugal",

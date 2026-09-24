@@ -2,40 +2,48 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ContactForm } from "@/components/ContactForm";
 import { PageLayout } from "@/components/PageLayout";
-import { getCopy } from "@/lib/copy";
+import { getCopy, getFormCopy } from "@/lib/copy";
 import { buildMetadata } from "@/lib/metadata";
+import { getRequestLocale } from "@/lib/request-locale";
 import { CONTACT_EMAIL } from "@/lib/site";
 
-const copy = getCopy();
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getRequestLocale();
+  const page = getCopy(locale).pages.contact;
+  return buildMetadata({
+    title: page.meta.title,
+    description: page.meta.description,
+    keywords: page.meta.keywords,
+    path: "/contact",
+    locale,
+  });
+}
 
-export const metadata: Metadata = buildMetadata({
-  title: "Contacto e diagnóstico gratuito",
-  description:
-    "Marque 45 minutos com a Franklyn. Score 0–70, recomendação franca, sem compromisso. Resposta em 2 dias úteis.",
-  keywords: [
-    "contacto franchising Portugal",
-    "diagnóstico franqueabilidade",
-    "consultoria franchising Lisboa",
-  ],
-  path: "/contact",
-});
-
-export default function ContactPage() {
+export default async function ContactPage() {
+  const locale = await getRequestLocale();
+  const copy = getCopy(locale);
+  const formCopy = getFormCopy(locale);
+  const page = copy.pages.contact;
   const { diagnosis } = copy.home;
 
   return (
     <PageLayout
-      title="Marcar diagnóstico gratuito"
-      description="45 minutos para perceber se faz sentido franquiciar e o que falta fazer se ainda não estiver pronto."
-      breadcrumbs={[{ label: "Contacto", href: "/contact" }]}
+      title={page.title}
+      description={page.description}
+      breadcrumbs={[{ label: page.breadcrumb, href: "/contact" }]}
     >
       <p>
-        Envie e-mail para{" "}
-        <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> ou use o formulário. Trabalhamos remoto em
-        Portugal: Lisboa, Porto ou outra região, tanto faz para a primeira conversa.
+        {page.intro.split("{{email}}").map((part, index, parts) => (
+          <span key={index}>
+            {part}
+            {index < parts.length - 1 && (
+              <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
+            )}
+          </span>
+        ))}
       </p>
 
-      <h2>O que acontece a seguir</h2>
+      <h2>{page.nextSteps}</h2>
       <ol className="space-y-4">
         {diagnosis.flow.map((step) => (
           <li key={step.num} className="sticker-card p-4">
@@ -48,11 +56,14 @@ export default function ContactPage() {
       </ol>
 
       <p className="mt-6 text-sm text-franklyn-muted">
-        Detalhe dos critérios e faixas de score na{" "}
-        <Link href="/#diagnostico">secção diagnóstico</Link>.
+        {page.scoreDetail}{" "}
+        <Link href="/#diagnostico">{page.scoreLinkLabel}</Link>.
       </p>
 
-      <h2>Formulário</h2>
+      <h2 id="formulario">{page.formTitle}</h2>
+      <p className="text-sm text-franklyn-muted">
+        {formCopy.quick.intro}. {page.formIntro}
+      </p>
       <ContactForm />
     </PageLayout>
   );

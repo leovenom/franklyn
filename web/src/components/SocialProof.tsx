@@ -1,9 +1,9 @@
 "use client";
 
-import { getCopy } from "@/lib/copy";
+import { useCopy } from "@/components/LocaleProvider";
 
 export function SocialProof() {
-  const { label, segments } = getCopy().home.socialProof;
+  const { label, segments } = useCopy().home.socialProof;
   const row = [...segments, ...segments];
 
   return (

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getCopy } from "./copy";
-import { COMPANY, SITE_NAME, SITE_URL } from "./site";
+import type { Locale } from "./locale";
+import { COMPANY, CONTACT_EMAIL, SITE_NAME, SITE_URL } from "./site";
 
 type PageMeta = {
   title: string;
@@ -8,6 +9,7 @@ type PageMeta = {
   path: string;
   noIndex?: boolean;
   keywords?: string[];
+  locale?: Locale;
 };
 
 export function buildMetadata({
@@ -16,16 +18,23 @@ export function buildMetadata({
   path,
   noIndex,
   keywords = [],
+  locale = "pt",
 }: PageMeta): Metadata {
   const url = `${SITE_URL}${path === "/" ? "" : path}`;
   const ogTitle = path === "/" ? `${SITE_NAME} | ${title}` : `${title} | ${SITE_NAME}`;
-  const copy = getCopy();
+  const copy = getCopy(locale);
 
   return {
     title: path === "/" ? { absolute: ogTitle } : title,
     description,
     keywords: keywords.length > 0 ? keywords : copy.home.meta.keywords,
-    alternates: { canonical: url },
+    alternates: {
+      canonical: url,
+      languages: {
+        "pt-PT": `${url}${url.includes("?") ? "&" : "?"}lang=pt`,
+        "en-GB": `${url}${url.includes("?") ? "&" : "?"}lang=en`,
+      },
+    },
     openGraph: {
       type: "website",
       locale: copy.ogLocale,
@@ -45,14 +54,14 @@ export function buildMetadata({
   };
 }
 
-export function websiteJsonLd() {
+export function websiteJsonLd(inLanguage = "pt-PT") {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: SITE_NAME,
     url: SITE_URL,
     description: COMPANY.description,
-    inLanguage: "pt-PT",
+    inLanguage,
     publisher: {
       "@type": "Organization",
       name: COMPANY.legalName,
@@ -69,7 +78,7 @@ export function localBusinessJsonLd() {
     name: COMPANY.name,
     description: COMPANY.description,
     url: SITE_URL,
-    email: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "contato@franklyn.pt",
+    email: CONTACT_EMAIL,
     telephone: COMPANY.phone,
     image: `${SITE_URL}/opengraph-image`,
     address: {

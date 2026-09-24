@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
+import { getFormCopy } from "@/lib/copy";
 import { isSendStudioConfigured, submitLeadToSendStudio, type LeadType } from "@/lib/crm/send-studio";
+import { validateFullLead, type LeadProfile } from "@/lib/lead-profile";
+import { type Locale, isLocale } from "@/lib/locale";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -10,10 +13,18 @@ type LeadBody = {
   message?: string;
   page?: string;
   website?: string;
+  consentContact?: boolean;
+  profile?: LeadProfile;
+  locale?: Locale;
 };
 
 function isLeadType(value: unknown): value is LeadType {
   return value === "diagnostico" || value === "contacto";
+}
+
+function isProfile(value: unknown): value is LeadProfile {
+  if (!value || typeof value !== "object") return false;
+  return true;
 }
 
 export async function POST(request: Request) {
@@ -47,6 +58,25 @@ export async function POST(request: Request) {
     }
   }
 
+  const locale: Locale = isLocale(body.locale) ? body.locale : "pt";
+  const validation = getFormCopy(locale).validation;
+
+  if (body.type === "diagnostico") {
+    if (body.profile && isProfile(body.profile)) {
+      const profileError = validateFullLead(body.profile, validation);
+      if (profileError) {
+        return NextResponse.json({ error: profileError }, { status: 400 });
+      }
+    } else {
+      if (!body.name?.trim()) {
+        return NextResponse.json({ error: validation.nameRequired }, { status: 400 });
+      }
+      if (body.consentContact !== true) {
+        return NextResponse.json({ error: validation.consentContactRequired }, { status: 400 });
+      }
+    }
+  }
+
   if (!isSendStudioConfigured()) {
     return NextResponse.json({ error: "CRM não configurado.", code: "CRM_NOT_CONFIGURED" }, { status: 503 });
   }
@@ -58,6 +88,7 @@ export async function POST(request: Request) {
       name: body.name?.trim(),
       message: body.message?.trim(),
       page: body.page?.trim(),
+      profile: body.profile && isProfile(body.profile) ? body.profile : undefined,
     });
 
     return NextResponse.json({ ok: true, personId: result.personId ?? null });

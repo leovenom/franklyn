@@ -21,7 +21,13 @@ export function CTA({ copy }: { copy: HomeCopy["cta"] }) {
           </h2>
           <p className="mt-3 text-franklyn-muted">{copy.sub}</p>
           <div className="mx-auto mt-8 max-w-sm">
-            <LeadForm placeholder={copy.placeholder} button={copy.button} fine={copy.fine} layout="stacked" />
+            <LeadForm
+              namePlaceholder={copy.namePlaceholder}
+              placeholder={copy.placeholder}
+              button={copy.button}
+              fine={copy.fine}
+              layout="stacked"
+            />
           </div>
         </Card>
       </m.div>

@@ -1,13 +1,13 @@
 "use client";
 
 import { m } from "framer-motion";
-import { getCopy } from "@/lib/copy";
+import { useCopy } from "@/components/LocaleProvider";
 import { popIn, stagger } from "@/lib/motion";
 import { Card } from "./ui/Card";
 import { Section } from "./ui/Section";
 
 export function FeatureHighlights() {
-  const features = getCopy().home.features;
+  const features = useCopy().home.features;
 
   return (
     <Section>

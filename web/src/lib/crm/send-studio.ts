@@ -1,3 +1,9 @@
+import {
+  buildCompanyLabel,
+  formatLeadNotes,
+  type LeadProfile,
+} from "@/lib/lead-profile";
+
 const DEFAULT_API_URL = "https://send-studio-prod.vercel.app";
 
 export type LeadType = "diagnostico" | "contacto";
@@ -8,6 +14,7 @@ export type SubmitLeadInput = {
   name?: string;
   message?: string;
   page?: string;
+  profile?: LeadProfile;
 };
 
 type SendStudioContact = {
@@ -16,6 +23,7 @@ type SendStudioContact = {
   name: string;
   company: string | null;
   locale: string;
+  phone?: string | null;
 };
 
 export function isSendStudioConfigured(): boolean {
@@ -34,7 +42,10 @@ function getToken(): string {
   return token;
 }
 
-function deriveName(email: string, name?: string): string {
+function deriveName(email: string, name?: string, profile?: LeadProfile): string {
+  const fromProfile = profile?.name?.trim();
+  if (fromProfile) return fromProfile;
+
   const trimmed = name?.trim();
   if (trimmed) return trimmed;
 
@@ -43,102 +54,73 @@ function deriveName(email: string, name?: string): string {
 }
 
 function buildCompany(input: SubmitLeadInput): string {
+  if (input.profile) {
+    const headline = buildCompanyLabel(input.profile);
+    const notes = formatLeadNotes(input.profile, input.type, input.page);
+    return `${headline}\n\n${notes}`;
+  }
+
   const parts = [`Franklyn · ${input.type}`, input.page || "/"];
+  if (input.name?.trim()) {
+    parts.push(`Contacto: ${input.name.trim()}`);
+  }
   if (input.message?.trim()) {
     parts.push(input.message.trim().slice(0, 160));
   }
   return parts.join(" · ");
 }
 
-async function studioRequest<T>(path: string, init: RequestInit = {}): Promise<{ ok: boolean; status: number; data: T }> {
-  const response = await fetch(`${getApiUrl()}${path}`, {
-    ...init,
-    headers: {
-      Authorization: `Bearer ${getToken()}`,
-      "Content-Type": "application/json",
-      ...init.headers,
-    },
-  });
-
-  const text = await response.text().catch(() => "");
-  let data = {} as T;
-  if (text) {
-    try {
-      data = JSON.parse(text) as T;
-    } catch {
-      data = {} as T;
-    }
-  }
-
-  return { ok: response.ok, status: response.status, data };
-}
-
-async function listContacts(): Promise<SendStudioContact[]> {
-  const { ok, status, data } = await studioRequest<SendStudioContact[]>("/api/contacts");
-  if (!ok) {
-    throw new Error(`SEND_STUDIO_HTTP_${status}`);
-  }
-  return Array.isArray(data) ? data : [];
-}
-
-async function createContact(payload: {
-  email: string;
-  name: string;
-  company: string;
-  locale: "pt-BR";
-}): Promise<SendStudioContact> {
-  const { ok, status, data } = await studioRequest<SendStudioContact>("/api/contacts", {
-    method: "POST",
-    body: JSON.stringify(payload),
-  });
-
-  if (!ok) {
-    throw new Error(`SEND_STUDIO_HTTP_${status}`);
-  }
-
-  return data;
-}
-
-async function updateContact(
-  id: string,
-  payload: { name: string; company: string; locale: "pt-BR" },
-): Promise<SendStudioContact> {
-  const { ok, status, data } = await studioRequest<SendStudioContact>(`/api/contacts/${id}`, {
-    method: "PATCH",
-    body: JSON.stringify(payload),
-  });
-
-  if (!ok) {
-    throw new Error(`SEND_STUDIO_HTTP_${status}`);
-  }
-
-  return data;
-}
-
-async function upsertContact(payload: {
-  email: string;
-  name: string;
-  company: string;
-  locale: "pt-BR";
-}): Promise<SendStudioContact> {
-  try {
-    return await createContact(payload);
-  } catch {
-    const existing = (await listContacts()).find((c) => c.email.toLowerCase() === payload.email.toLowerCase());
-    if (!existing) {
-      throw new Error("SEND_STUDIO_UPSERT_FAILED");
-    }
-    return updateContact(existing.id, payload);
-  }
+function buildPhone(input: SubmitLeadInput): string | undefined {
+  const phone = input.profile?.phone?.trim();
+  return phone || undefined;
 }
 
 export async function submitLeadToSendStudio(input: SubmitLeadInput): Promise<{ personId?: string }> {
-  const contact = await upsertContact({
+  const payload: Record<string, string> = {
     email: input.email.trim().toLowerCase(),
-    name: deriveName(input.email, input.name),
+    name: deriveName(input.email, input.name, input.profile),
     company: buildCompany(input),
     locale: "pt-BR",
-  });
+  };
 
-  return { personId: contact.id };
+  const phone = buildPhone(input);
+  if (phone) {
+    payload.phone = phone;
+  }
+
+  let response: Response;
+  try {
+    response = await fetch(`${getApiUrl()}/api/contacts`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${getToken()}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : "network error";
+    throw new Error(`SEND_STUDIO_NETWORK: ${detail}`);
+  }
+
+  const text = await response.text().catch(() => "");
+  let data: SendStudioContact | null = null;
+  if (text) {
+    try {
+      data = JSON.parse(text) as SendStudioContact;
+    } catch {
+      data = null;
+    }
+  }
+
+  if (!response.ok) {
+    const snippet = text.slice(0, 200) || response.statusText;
+    throw new Error(`SEND_STUDIO_HTTP_${response.status}: ${snippet}`);
+  }
+
+  if (!data?.id) {
+    throw new Error("SEND_STUDIO_NO_CONTACT_ID");
+  }
+
+  return { personId: data.id };
 }

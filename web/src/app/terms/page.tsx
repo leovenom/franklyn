@@ -1,48 +1,32 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { PageLayout } from "@/components/PageLayout";
+import { TermsContent } from "@/components/legal/TermsContent";
+import { getTermsCopy } from "@/lib/copy/legal/terms";
 import { buildMetadata } from "@/lib/metadata";
-import { COMPANY, CONTACT_EMAIL } from "@/lib/site";
+import { getRequestLocale } from "@/lib/request-locale";
 
-export const metadata: Metadata = buildMetadata({
-  title: "Terms of Use",
-  description:
-    "Termos de uso do site Franklyn: condições de acesso, propriedade intelectual e limitação de responsabilidade.",
-  path: "/terms",
-});
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getRequestLocale();
+  const terms = getTermsCopy(locale);
+  return buildMetadata({
+    title: terms.meta.title,
+    description: terms.meta.description,
+    path: "/terms",
+    locale,
+  });
+}
 
-export default function TermsPage() {
+export default async function TermsPage() {
+  const locale = await getRequestLocale();
+  const terms = getTermsCopy(locale);
+
   return (
     <PageLayout
-      title="Terms of Use"
-      description="Última atualização: 15 de setembro de 2026"
-      breadcrumbs={[{ label: "Terms of Use", href: "/terms" }]}
+      title={terms.title}
+      description={terms.updated}
+      breadcrumbs={[{ label: terms.breadcrumb, href: "/terms" }]}
     >
-      <p>
-        Ao acessar franklyn.com.br, você concorda com estes termos. Se não concordar, não utilize o site.
-      </p>
-      <h2>Serviços</h2>
-      <p>
-        O site apresenta informações sobre consultoria em franquias da {COMPANY.legalName}.
-        Contratos de prestação de serviços são formalizados separadamente por escrito.
-      </p>
-      <h2>Propriedade intelectual</h2>
-      <p>
-        Conteúdo, marca e materiais são propriedade da Franklyn ou licenciados. Reprodução não
-        autorizada é proibida.
-      </p>
-      <h2>Isenção</h2>
-      <p>
-        Diagnósticos e conteúdos informativos não constituem assessoria jurídica, contábil ou
-        garantia de resultado. Decisões de franqueamento são de responsabilidade do cliente.
-      </p>
-      <h2>Lei aplicável</h2>
-      <p>Foro: Comarca de São Paulo, SP, Brasil, salvo disposição contratual diversa em projetos EU.</p>
-      <h2>Contato</h2>
-      <p>
-        <a href={`mailto:${CONTACT_EMAIL}`} className="text-franklyn-accent hover:underline">{CONTACT_EMAIL}</a>
-        {" "}· <Link href="/privacy" className="text-franklyn-accent hover:underline">Privacy Policy</Link>
-      </p>
+      <TermsContent locale={locale} />
     </PageLayout>
   );
 }

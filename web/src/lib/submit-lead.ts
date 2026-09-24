@@ -1,10 +1,16 @@
 import { CONTACT_EMAIL } from "@/lib/site";
+import { formatLeadNotes, type LeadProfile } from "@/lib/lead-profile";
+import type { Locale } from "@/lib/locale";
 
 export type SubmitLeadInput = {
   type: "diagnostico" | "contacto";
   email: string;
   name?: string;
   message?: string;
+  consentContact?: boolean;
+  profile?: LeadProfile;
+  website?: string;
+  locale?: Locale;
 };
 
 export type SubmitLeadResult =
@@ -12,16 +18,31 @@ export type SubmitLeadResult =
   | { ok: true; via: "mailto" }
   | { ok: false; error: string };
 
+function buildMailtoBody(input: SubmitLeadInput): string {
+  if (input.profile) {
+    return formatLeadNotes(input.profile, input.type, typeof window !== "undefined" ? window.location.pathname : "/");
+  }
+
+  if (input.type === "contacto") {
+    return `Nome: ${input.name}\nE-mail: ${input.email}\n\n${input.message ?? ""}`;
+  }
+
+  return [
+    `Nome: ${input.name ?? ""}`,
+    `E-mail: ${input.email}`,
+    "",
+    "Pedido de diagnóstico gratuito (formulário rápido).",
+    "Consentimento RGPD: sim",
+  ].join("\n");
+}
+
 function mailtoFallback(input: SubmitLeadInput): SubmitLeadResult {
   const subject =
     input.type === "diagnostico"
       ? encodeURIComponent("Diagnóstico Franklyn: Portugal")
       : encodeURIComponent(`Contato Franklyn: ${input.name ?? ""}`);
 
-  const body =
-    input.type === "diagnostico"
-      ? encodeURIComponent(`E-mail: ${input.email}\n\nGostaria de marcar diagnóstico gratuito.`)
-      : encodeURIComponent(`Nome: ${input.name}\nE-mail: ${input.email}\n\n${input.message ?? ""}`);
+  const body = encodeURIComponent(buildMailtoBody(input));
 
   window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
   return { ok: true, via: "mailto" };
@@ -35,7 +56,6 @@ export async function submitLead(input: SubmitLeadInput): Promise<SubmitLeadResu
       body: JSON.stringify({
         ...input,
         page: window.location.pathname,
-        website: "",
       }),
     });
 

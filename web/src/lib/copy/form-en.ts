@@ -1,0 +1,122 @@
+import type { FormCopy } from "./form";
+
+export const formCopyEn: FormCopy = {
+  sections: {
+    contact: "Who is contacting us",
+    business: "The business",
+    ambition: "Network ambition",
+    notes: "Extra context",
+    legal: "Legal and privacy",
+  },
+  fields: {
+    name: { label: "Full name", placeholder: "Jane Smith" },
+    email: { label: "Work email", placeholder: "jane@company.com" },
+    phone: { label: "Phone", placeholder: "+351 912 345 678" },
+    role: { label: "Role in the company", placeholder: "Select" },
+    businessName: { label: "Brand / trading name", placeholder: "e.g. Grão & Co." },
+    companyTaxId: {
+      label: "Company tax ID (NIF/VAT)",
+      placeholder: "e.g. 501 234 567",
+      hint: "Tax identification number of the entity you want to franchise.",
+    },
+    sector: { label: "Sector", placeholder: "Select" },
+    units: { label: "Operating units (company-owned)", placeholder: "Select" },
+    operationsYears: { label: "How long have you been operating?", placeholder: "Select" },
+    revenueBand: { label: "Annual revenue", placeholder: "Select" },
+    region: { label: "Main region today", placeholder: "Select" },
+    goal: { label: "What are you looking for now?", placeholder: "Select" },
+    horizon: { label: "Timeline to open a network", placeholder: "Select" },
+    hasFranchisees: { label: "Do you already have franchisees?", placeholder: "Select" },
+    message: {
+      label: "Anything relevant for the first conversation?",
+      placeholder: "e.g. 2 stores in Lisbon, ~18% margin, manual still informal…",
+    },
+  },
+  options: {
+    sectors: [
+      "Food service / café",
+      "Retail",
+      "Services",
+      "Health / aesthetics",
+      "Education / training",
+      "Fitness / wellness",
+      "Technology / software",
+      "Other",
+    ],
+    units: ["0 (project only)", "1", "2–3", "4–10", "10+"],
+    years: ["< 1 year", "1–3 years", "3–5 years", "5+ years"],
+    revenue: ["< € 250k", "€ 250k – 500k", "€ 500k – 1M", "€ 1M – 3M", "> € 3M"],
+    regions: [
+      "North",
+      "Central",
+      "Lisbon & Tagus",
+      "Alentejo",
+      "Algarve",
+      "All Portugal",
+      "International (PT focus)",
+    ],
+    goals: [
+      "See if we are ready to franchise",
+      "Prepare dossier and recruit franchisees",
+      "Adjust the model before scaling",
+      "Initial information only",
+    ],
+    horizons: ["6 months", "12 months", "18+ months", "Not sure yet"],
+    roles: [
+      "Founder",
+      "CEO / General management",
+      "Operations",
+      "Sales / expansion",
+      "Legal / compliance",
+      "Other",
+    ],
+    franchisees: ["Yes", "No", "In preparation"],
+  },
+  validation: {
+    nameRequired: "Name is required.",
+    emailRequired: "Email is required.",
+    phoneRequired: "Phone is required.",
+    roleRequired: "Role is required.",
+    businessNameRequired: "Brand name is required.",
+    companyTaxIdRequired: "Company tax ID is required.",
+    companyTaxIdInvalid: "Invalid tax ID. Enter 9 valid digits.",
+    sectorRequired: "Sector is required.",
+    unitsRequired: "Units field is required.",
+    operationsYearsRequired: "Operating history is required.",
+    revenueRequired: "Annual revenue is required.",
+    regionRequired: "Region is required.",
+    goalRequired: "Goal is required.",
+    horizonRequired: "Timeline is required.",
+    franchiseesRequired: "Please indicate if you already have franchisees.",
+    consentContactRequired: "Accept contact and the privacy policy.",
+    consentRepresentRequired: "Confirm you can represent the company.",
+  },
+  consent: {
+    contact:
+      "I agree to be contacted to schedule the diagnosis and authorise processing of my data for this request, under the",
+    represent:
+      "I confirm I have authority to speak on behalf of this company about franchising and expansion.",
+    privacyLink: "Privacy Policy",
+  },
+  quick: {
+    intro: "2 minutes · data to prepare your diagnosis",
+    fullLink: "Full franchising form",
+    fullHref: "/contact#formulario",
+  },
+  submit: {
+    quick: "Book diagnosis",
+    full: "Submit diagnosis request",
+    loading: "Sending…",
+  },
+  success: {
+    quick: "Thank you — we received your request and will be in touch soon.",
+    full: "Request sent. We reply within 2 business days with a slot for the 45-minute call.",
+  },
+  why: {
+    title: "Why we ask for this",
+    marketing:
+      "Marketing: understand sector, maturity and network ambition before the call — so the conversation is useful, not generic.",
+    legal:
+      "Legal: tax ID to identify the entity, confirmation of representation and GDPR basis for contact. The diagnosis does not replace a lawyer or APF dossier.",
+  },
+};
